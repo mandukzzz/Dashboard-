@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101216">
+<title>Meu Trabalho &amp; Ganhos</title>
+<style>
+:root{color-scheme:dark;--bg:#101216;--panel:#191c22;--panel2:#20242c;--line:#303641;--text:#f3f5f7;--muted:#a7afbb;--green:#36d782;--red:#ff626d;--blue:#83aaff;--gold:#f5c76a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:88px}header{padding:22px 16px 16px;background:#15181e;border-bottom:1px solid var(--line)}h1{font-size:22px;margin:0 0 4px}header p{margin:0;color:var(--muted);font-size:13px}main{max-width:760px;margin:auto;padding:14px}
+.tabs{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(3,1fr);background:#191c22;border-top:1px solid var(--line);padding:8px 6px max(8px,env(safe-area-inset-bottom));z-index:5}.tabs button{border:0;background:transparent;color:var(--muted);padding:10px 3px;border-radius:12px;font-size:13px}.tabs button.active{background:#2b303a;color:#fff}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;margin-bottom:13px}.panel h2{font-size:17px;margin:0 0 12px}.muted{color:var(--muted)}.row{display:flex;gap:10px;align-items:center}.row>*{min-width:0}.spread{justify-content:space-between}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:11px;flex:1}.field label{font-size:13px;color:var(--muted)}input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:11px}input[type=checkbox]{width:auto;accent-color:var(--green)}textarea{min-height:65px;resize:vertical}.btn{border:0;border-radius:11px;padding:11px 14px;background:var(--green);color:#062b18;font-weight:700}.btn.secondary{background:#2b303a;color:var(--text)}.btn.danger{background:#48232a;color:#ffb3b8}.btn.small{padding:7px 10px;font-size:13px}.hidden{display:none!important}
+.monthnav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.monthnav strong{font-size:17px;text-align:center}.monthnav button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:8px 12px}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.dow{text-align:center;font-size:11px;color:var(--muted);padding:5px 0}.day{min-height:56px;border:1px solid var(--line);background:var(--panel2);border-radius:9px;color:var(--text);padding:5px 2px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:13px}.day.empty{background:transparent;border-color:transparent}.day.selected{outline:2px solid var(--blue)}.day.today{border-color:var(--blue)}.day.worked{background:#17385b;border-color:#2878d0}.day.worked:after{content:"";width:5px;height:5px;border-radius:50%;background:#83aaff}.day.dayoff{background:#59491b;border-color:#f2c94c;color:#fff0b3}.day .eventicon{font-size:12px;line-height:1.1}.day .mini{font-size:9px;color:var(--muted);max-width:100%;overflow:hidden;white-space:nowrap}
+.green{color:var(--green)!important}.red{color:var(--red)!important}.statgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{background:var(--panel2);border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:18px;margin-top:3px}.chartgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.chartcard{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:13px 8px;text-align:center;min-width:0}.chartcard h3{margin:0 0 12px;font-size:16px}.rings{display:flex;flex-direction:column;gap:12px;align-items:center}.ringrow{display:flex;align-items:center;gap:8px;width:100%;justify-content:center}.donut{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;position:relative}.donut:before{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--panel)}.donut span{position:relative;font-size:10px;color:var(--muted)}.ringinfo{text-align:left;min-width:0}.ringinfo small{display:block;color:var(--muted);font-size:12px}.ringinfo strong{display:block;font-size:13px;overflow-wrap:anywhere}.chartcard.gains h3{color:var(--green)}.chartcard.expenses h3{color:var(--red)}.netline{display:flex;justify-content:space-between;gap:8px;padding-top:12px;margin-top:12px;border-top:1px solid var(--line);font-size:13px}.entry{padding:12px 0;border-bottom:1px solid var(--line)}.entry:last-child{border-bottom:0}.entry strong{display:block}.entry small{color:var(--muted)}.emptymsg{text-align:center;color:var(--muted);padding:20px 8px;font-size:14px}.badge{font-size:11px;padding:4px 8px;border-radius:99px;background:#2b303a;color:var(--muted)}.badge.paid{color:var(--green);background:#19392a}.badge.pending{color:var(--gold);background:#3b3220}
+@media(min-width:560px){.rings{flex-direction:row;align-items:flex-start}.ringrow{flex-direction:column;gap:5px}.ringinfo{text-align:center}.donut{width:82px;height:82px}.chartcard{padding:16px 12px}}
+
+
+/* Dashboard financeiro: aprimoramento visual sem alterar os dados */
+.dashboard-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.dashboard-kicker{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--blue);font-weight:800}
+.dashboard-head h2{font-size:22px;margin:3px 0 4px}
+.dashboard-head p{font-size:12px;color:var(--muted);margin:0}
+.dashboard-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:#233047;color:var(--blue);font-size:21px;flex-shrink:0}
+.dashboard-hero{background:linear-gradient(135deg,#1b2738,#19251f);border-color:#344356}
+.dashboard-hero-label{color:#bdc9d8;font-size:12px}
+.dashboard-hero-value{display:block;font-size:28px;line-height:1.25;font-weight:850;letter-spacing:-.7px;margin:4px 0}
+.dashboard-hero-note{font-size:11px;color:#aab8c8}
+.dashboard-stat{position:relative;overflow:hidden;min-height:94px;border:1px solid var(--line)}
+.dashboard-stat:after{content:"";position:absolute;right:-15px;top:-20px;width:62px;height:62px;border-radius:50%;background:currentColor;opacity:.06}
+.dashboard-stat .stat-icon{font-size:17px;margin-bottom:5px}
+.dashboard-stat strong{font-size:17px;overflow-wrap:anywhere}
+.dashboard-stat.gain-card{color:var(--green);background:linear-gradient(145deg,#192d27,var(--panel2))}
+.dashboard-stat.expense-card{color:var(--red);background:linear-gradient(145deg,#332126,var(--panel2))}
+.dashboard-stat.balance-card{color:var(--blue)}
+.dashboard-stat.work-card{color:var(--gold)}
+.dashboard-stat small{color:var(--muted)}
+.comparison-panel{margin-top:13px}
+.comparison-block{padding:12px 0;border-top:1px solid var(--line)}
+.comparison-block:first-of-type{border-top:0;padding-top:2px}
+.comparison-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:11px}
+.comparison-title strong{font-size:14px}
+.comparison-title span{font-size:11px;color:var(--muted)}
+.bar-line{display:grid;grid-template-columns:68px minmax(0,1fr);align-items:center;gap:8px;margin:9px 0}
+.bar-label{font-size:12px;color:var(--muted)}
+.bar-track{height:10px;background:#303641;border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;width:0;border-radius:99px;transition:width .25s ease}
+.bar-fill.gain-fill{background:linear-gradient(90deg,#20a965,var(--green))}
+.bar-fill.expense-fill{background:linear-gradient(90deg,#d94455,var(--red))}
+.bar-value{font-size:12px;font-weight:750;text-align:right;margin-top:3px}
+.dashboard-section-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.dashboard-section-title .badge{white-space:nowrap}
+.chartgrid{margin-top:13px}
+@media(max-width:380px){.dashboard-head h2{font-size:20px}.dashboard-hero-value{font-size:25px}.dashboard-stat{padding:10px}.dashboard-stat strong{font-size:15px}.bar-line{grid-template-columns:58px minmax(0,1fr)}}
+
+
+.money-breakdown{margin-top:8px;padding:10px;border-radius:10px;background:var(--panel2);font-size:12px;display:grid;gap:5px}
+.money-breakdown .money-row{display:flex;justify-content:space-between;gap:8px}
+.money-breakdown .remaining{border-top:1px solid var(--line);padding-top:6px;margin-top:2px;font-weight:800;font-size:13px}
+.badge.partial{color:#f6c76b;background:#3b3220}
+#evSettled{border-color:#356c51}
+
+.event-columns{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.event-columns .panel{min-width:0;padding:13px}
+.event-columns h2{font-size:16px}
+.event-columns .entry{overflow-wrap:anywhere}
+@media(max-width:420px){.event-columns{gap:8px}.event-columns .panel{padding:10px}.event-columns h2{font-size:14px}.event-columns .entry .row{gap:5px}.event-columns .btn.small{font-size:10px;padding:7px 6px}}
+body.light{color-scheme:light;--bg:#f3f5f8;--panel:#ffffff;--panel2:#edf0f5;--line:#d5dbe5;--text:#202633;--muted:#647084;--green:#16834c;--red:#c62838;--blue:#315fb8;--gold:#9a6a00}body.light header{background:#fff}body.light .tabs{background:#fff}body.light .tabs button.active{background:#e2e8f2;color:#202633}body.light .btn.secondary{background:#e2e7ef;color:#202633}body.light .bar-track{background:#dce2eb}body.light .dashboard-hero{background:linear-gradient(135deg,#e7edf8,#e5f5eb);border-color:#cbd6e5}body.light .dashboard-hero-label,body.light .dashboard-hero-note{color:#526176}body.light .dashboard-stat.gain-card{background:#e7f5ec}body.light .dashboard-stat.expense-card{background:#fff0f0}body.light .day.worked{background:#dceaff;color:#193c72}body.light .day.dayoff{background:#fff2c6;color:#6b4c00}
+.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+#upcomingReminders .entry{padding:9px 0}#upcomingReminders .entry:last-child{border-bottom:0}
+
+
+
+/* Navegação inferior em botões largos inspirados no Android */
+body{padding-bottom:112px}
+.tabs.android-bottom-nav{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;
+ left:10px;right:10px;bottom:max(8px,env(safe-area-inset-bottom));
+ padding:8px;background:color-mix(in srgb,var(--bg) 94%,transparent);
+ border:0;border-radius:24px;backdrop-filter:blur(14px);
+}
+.android-bottom-nav button{
+ min-width:0;min-height:66px;border:1px solid #34312a;border-radius:22px;
+ background:transparent;color:var(--muted);display:flex;flex-direction:column;
+ align-items:center;justify-content:center;gap:3px;padding:7px 2px;
+}
+.android-bottom-nav button.active{
+ background:#2d2a23;border-color:#f5d96c;color:#ffe477;
+ box-shadow:inset 0 0 0 1px #f5d96c33;
+}
+.android-bottom-nav .nav-icon{font-size:22px;line-height:1.1;font-weight:700}
+.android-bottom-nav .nav-label{font-size:10px;line-height:1.1;white-space:nowrap}
+body.light .android-bottom-nav button{border-color:var(--line)}
+body.light .android-bottom-nav button.active{background:#fff4bf;border-color:#b99a23;color:#5e4a00}
+@media(max-width:360px){.tabs.android-bottom-nav{left:6px;right:6px;gap:5px;padding:6px}.android-bottom-nav button{border-radius:18px}.android-bottom-nav .nav-label{font-size:9px}}
+/* Configurações organizadas como gaveta de aplicativos: cartões em grade */
+.settings-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.settings-tile{min-width:0;margin:0!important;padding:13px!important;border-radius:17px;background:var(--panel2);border:1px solid var(--line)}
+.settings-tile h2{font-size:14px;display:flex;align-items:center;gap:8px;line-height:1.3;margin:0 0 9px!important}
+.settings-tile .tile-icon{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:12px;background:#343126;color:#ffe477;font-size:19px;flex-shrink:0}
+.settings-tile p{font-size:12px!important;line-height:1.4}
+.settings-tile .row{align-items:stretch}
+.settings-tile .row>*{flex:1}
+.settings-tile .btn{width:100%;font-size:12px;padding:9px 7px;overflow-wrap:anywhere}
+.settings-tile .field{margin-bottom:9px}
+.settings-tile .field:last-child{margin-bottom:0}
+.settings-tile .field label{font-size:12px}
+.settings-intro{margin-bottom:12px}
+@media(max-width:380px){.settings-tiles{gap:8px}.settings-tile{padding:10px!important}.settings-tile h2{font-size:13px}.settings-tile .tile-icon{width:30px;height:30px}}
+
+/* Simplificação visual e orientação para uso no celular */
+.panel h2{line-height:1.3}
+.field label{font-weight:600}
+.field input,.field select,.field textarea{min-height:45px}
+.btn{min-height:44px}
+.btn.secondary{border:1px solid var(--line)}
+.help-hint{font-size:12px;color:var(--muted);margin:5px 0 12px;line-height:1.45}
+.quick-guide{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:13px;font-size:13px}
+.quick-guide .guide-icon{font-size:19px;flex-shrink:0}
+.optional-fields{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0 12px}
+.optional-fields summary{cursor:pointer;font-weight:700;font-size:14px;padding:3px 0}
+.optional-fields[open] summary{margin-bottom:12px}
+.section-hint{font-size:12px;color:var(--muted);margin:-5px 0 12px}
+@media(max-width:380px){main{padding:10px}.panel{padding:12px}.row{gap:8px}.field label{font-size:12px}}
+
+/* Toque visual mais limpo no celular: remove o realce azul de foco/toque sem alterar funções. */
+* { -webkit-tap-highlight-color: transparent; }
+button, .tap-detail, .day, .tabs button {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus, button:focus-visible,
+.tap-detail:focus, .tap-detail:focus-visible,
+.day:focus, .day:focus-visible,
+.tabs button:focus, .tabs button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+/* Ajuste final da barra inferior no site: sempre acima do conteúdo e sem transparência */
+nav.tabs.android-bottom-nav{
+ position:fixed!important;
+ z-index:99999!important;
+ isolation:isolate;
+ bottom:0!important;
+ left:0!important;
+ right:0!important;
+ width:100%!important;
+ margin:0!important;
+ padding:8px 8px max(8px,env(safe-area-inset-bottom))!important;
+ background:var(--bg)!important;
+ border-top:1px solid var(--line)!important;
+ border-radius:22px 22px 0 0!important;
+ backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+ box-shadow:0 -8px 24px #0005;
+}
+nav.tabs.android-bottom-nav button{
+ height:60px!important;
+ min-height:60px!important;
+ padding:5px 2px!important;
+ margin:0!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:center!important;
+ gap:4px!important;
+ line-height:1!important;
+ transform:none!important;
+ position:relative!important;
+}
+nav.tabs.android-bottom-nav .nav-icon{
+ display:block!important;
+ line-height:1!important;
+ height:23px!important;
+ margin:0!important;
+ padding:0!important;
+ transform:none!important;
+}
+nav.tabs.android-bottom-nav .nav-label{
+ display:block!important;
+ line-height:1.1!important;
+ margin:0!important;
+ padding:0!important;
+ transform:none!important;
+}
+body{padding-bottom:calc(90px + env(safe-area-inset-bottom))!important}
+
+/* Painel de metas simples e sem sobreposição */
+.goals-panel{position:relative;display:block;width:100%;margin:12px 0;clear:both}
+.goals-panel .dashboard-section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.goals-panel .dashboard-section-title h2{font-size:16px}
+.goals-panel .goals-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.goals-panel .goals-fields .field{min-width:0;margin-bottom:8px}
+.goals-panel .goals-fields label{font-size:12px;line-height:1.35}
+.goals-panel input{min-width:0}
+@media(max-width:360px){.goals-panel .goals-fields{grid-template-columns:1fr;gap:0}}
+
+
+#tab-summary .chartgrid,#tab-summary .comparison-panel{display:none!important}
+#tab-summary .comparison-panel{margin-top:0}
+#tab-summary .comparison-block{padding:10px 0}
+#tab-summary .comparison-title{margin-bottom:8px}
+.savings-balance{font-size:25px;font-weight:850;color:var(--gold);display:block;margin:5px 0}
+.savings-ledger{margin-top:10px}.savings-ledger .entry{padding:9px 0}
+
+/* Atualização visual: calendário em destaque e informações secundárias em pop-ups */
+#tab-calendar>.quick-guide{display:none!important}
+#tab-calendar #upcomingPanel{padding:10px 13px;margin-bottom:10px}
+#tab-calendar #upcomingPanel p{margin-bottom:4px!important}
+#tab-calendar #upcomingReminders{max-height:64px;overflow:hidden}
+#tab-calendar #dayEditorPanel{display:none!important}
+#tab-calendar .calendar-panel{padding:12px}
+#tab-calendar .day{min-height:clamp(48px,8.5vh,72px);font-size:14px;border-radius:11px}
+#tab-calendar .calendar{gap:6px}
+#tab-calendar .monthnav{margin-bottom:14px}
+#tab-summary>.quick-guide{display:none!important}
+.quick-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 13px}
+.quick-tile{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:15px;padding:14px;text-align:left;display:flex;flex-direction:column;gap:5px;min-width:0}
+.quick-tile>span{font-size:22px}.quick-tile small{color:var(--muted)}.quick-tile strong{font-size:18px;overflow-wrap:anywhere}.quick-tile em{font-size:11px;color:var(--muted);font-style:normal}
+#tab-summary .goals-panel,#tab-summary #savingsPanel{display:none!important}
+#tab-summary .dashboard-head{margin-bottom:9px}#tab-summary .dashboard-head h2{font-size:20px}
+#tab-events>.quick-guide{display:none!important}
+#sectionDetailOverlay{z-index:10001}
+#dayEditorOverlay{z-index:10002}
+@media(max-width:390px){#tab-calendar .day{min-height:48px;padding:4px 1px;font-size:12px}#tab-calendar .calendar{gap:3px}.quick-tile{padding:11px}}
+
+/* Resumo visual compacto abaixo do calendário */
+.visual-summary{padding:14px;overflow:hidden}
+.visual-summary-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.visual-summary-heading h2{margin:2px 0 0;font-size:18px}
+.visual-summary-kicker{font-size:10px;font-weight:850;letter-spacing:1.2px;color:var(--blue)}
+.visual-summary-main{display:flex;flex-direction:column;align-items:center;gap:6px}
+.summary-ring{--ring-size:236px;width:var(--ring-size);height:var(--ring-size);flex:0 0 auto;border-radius:50%;padding:13px;display:grid;place-items:center;background:conic-gradient(#347fe8 0deg 57deg,#101216 57deg 60deg,#e64b43 60deg 117deg,#101216 117deg 120deg,#f3b51b 120deg 177deg,#101216 177deg 180deg,#16a66a 180deg 237deg,#101216 237deg 240deg,#ad50c7 240deg 297deg,#101216 297deg 300deg,#12a9c1 300deg 357deg,#101216 357deg 360deg);box-shadow:0 0 0 1px #ffffff0a;transition:background .25s ease;position:relative}
+.summary-ring:after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid #ffffff0a;pointer-events:none}
+.summary-ring-center{width:100%;height:100%;border-radius:50%;background:var(--panel);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:8px}
+.summary-ring-center small{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px}
+.summary-ring-center strong{font-size:17px;line-height:1.3;overflow-wrap:anywhere}
+.summary-ring-center span{font-size:10px;color:var(--muted);line-height:1.1}
+.visual-summary-caption{margin:2px 0 12px;color:var(--muted);font-size:11px;text-align:center}
+.visual-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.visual-metric{min-width:0;position:relative;border:1px solid color-mix(in srgb,var(--metric-color) 65%,var(--line));background:linear-gradient(145deg,color-mix(in srgb,var(--metric-color) 10%,var(--panel2)),var(--panel2));border-radius:12px;padding:10px 11px 9px;border-left:3px solid var(--metric-color);cursor:pointer}
+.visual-metric:before{content:"";position:absolute;top:-5px;left:14px;width:8px;height:8px;border-radius:50%;background:var(--metric-color);box-shadow:0 0 0 3px var(--panel)}
+.visual-metric small{display:block;color:var(--text);font-size:11px;line-height:1.35}
+.visual-metric strong{display:block;color:var(--metric-color);font-size:16px;margin-top:4px;overflow-wrap:anywhere}
+.visual-metric .metric-percent{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.metric-work{--metric-color:#ad50f0}.metric-off{--metric-color:#12d4e8}.metric-week-balance{--metric-color:#16e89a}.metric-month-balance{--metric-color:#347fe8}.metric-week-expense{--metric-color:#ff4249}.metric-month-expense{--metric-color:#ffc21c}
+body.light .summary-ring{background:conic-gradient(#347fe8 0deg 57deg,#fff 57deg 60deg,#e64b43 60deg 117deg,#fff 117deg 120deg,#f3b51b 120deg 177deg,#fff 177deg 180deg,#16a66a 180deg 237deg,#fff 237deg 240deg,#ad50c7 240deg 297deg,#fff 297deg 300deg,#12a9c1 300deg 357deg,#fff 357deg 360deg)}
+@media(max-width:360px){.summary-ring{--ring-size:202px}.visual-summary-grid{gap:7px}.visual-metric{padding:9px}.visual-metric strong{font-size:14px}}
+@media(min-width:560px){.visual-summary-main{padding:8px 0}.summary-ring{--ring-size:260px}.visual-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style><link rel="manifest" href="manifest.webmanifest"></head>
+<body>
+<style>.detail-overlay{position:fixed;inset:0;background:#000b;z-index:9999;display:none;align-items:center;justify-content:center;padding:18px}.detail-overlay.open{display:flex}.detail-dialog{width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 60px #0008}.detail-dialog h2{margin:0}.detail-item{padding:12px 0;border-bottom:1px solid var(--line)}.detail-item:last-child{border-bottom:0}.tap-detail{cursor:pointer}.tap-detail:focus{outline:2px solid var(--blue)}.event-priority{border-left:4px solid var(--gold);padding-left:10px;background:color-mix(in srgb,var(--gold) 7%,transparent);border-radius:8px}.money-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0}.money-row span{color:var(--muted)}.money-row strong{text-align:right}</style><div class="detail-overlay" id="moneyDetailOverlay" role="dialog" aria-modal="true" aria-labelledby="moneyDetailTitle"><div class="detail-dialog"><div class="row spread"><h2 id="moneyDetailTitle">Detalhes</h2><button class="btn secondary small" id="closeMoneyDetail" aria-label="Fechar">✕</button></div><div id="moneyDetailBody"></div></div></div>
+<div class="detail-overlay" id="dayEditorOverlay" role="dialog" aria-modal="true" aria-labelledby="dayModalHeading"><div class="detail-dialog"><div class="row spread"><h2 id="dayModalHeading">Registro do dia</h2><button class="btn secondary small" id="closeDayEditor" aria-label="Fechar">✕</button></div><div id="dayEditorModalBody"></div></div></div><div class="detail-overlay" id="sectionDetailOverlay" role="dialog" aria-modal="true" aria-labelledby="sectionDetailTitle"><div class="detail-dialog"><div class="row spread"><h2 id="sectionDetailTitle">Detalhes</h2><button class="btn secondary small" id="closeSectionDetail" aria-label="Fechar">✕</button></div><div id="sectionDetailBody"></div></div></div>
+<header><h1>Meu Trabalho &amp; Ganhos</h1><p>Seu trabalho, seus ganhos e seus gastos em um só lugar</p></header>
+<main>
+<section id="tab-calendar">
+  <div class="quick-guide"><span class="guide-icon">👋</span><div><strong>Comece pelo calendário</strong><br>Escolha um dia, informe seus ganhos e gastos e toque em <strong>Salvar registro</strong>. Você pode registrar tudo no mesmo dia.</div></div>
+ <div class="panel" id="upcomingPanel"><div class="row spread"><h2 id="upcomingTitle" style="margin:0">🔔 Lembretes próximos</h2><span class="badge" id="upcomingCount">0</span></div><p class="muted" style="font-size:12px;margin:5px 0 8px"><span id="upcomingDesc">Pagamentos e faturas vencidos ou com vencimento nos próximos 7 dias.</span></p><div id="upcomingReminders"></div></div>
+ <div class="panel calendar-panel"><div class="monthnav"><button id="prev" aria-label="Mês anterior">‹</button><strong id="monthTitle"></strong><button id="next" aria-label="Próximo mês">›</button></div><div class="calendar" id="calendar"></div><p class="muted" style="font-size:12px;margin:12px 0 0">🔵 Dia trabalhado · 🟡 Folga · Ícone: evento ou pagamento · Contorno azul: hoje</p></div>
+ <div class="panel visual-summary" id="visualSummaryPanel">
+  <div class="visual-summary-heading"><div><span class="visual-summary-kicker">VISÃO RÁPIDA</span><h2>📊 Resumo visual</h2></div><span class="badge">Semana + mês</span></div>
+  <div class="visual-summary-main">
+   <div class="summary-ring" id="visualSummaryRing" aria-label="Gráfico proporcional dos indicadores do mês e da semana"><div class="summary-ring-center"><small id="visualSummaryDayLabel">Hoje</small><strong class="green" id="visualTodayGain">R$ 0,00</strong><span>Ganhos</span><strong class="red" id="visualTodayExpense">R$ 0,00</strong><span>Gastos</span></div></div>
+   <p class="visual-summary-caption">As fatias crescem conforme o valor de cada indicador. Quando tudo estiver zerado, as cores aparecem em partes iguais.</p>
+  </div>
+  <div class="visual-summary-grid" aria-label="Indicadores ligados às cores do gráfico">
+   <div class="visual-metric metric-work" data-summary-metric="worked"><small>▦ Dias trabalhados no mês</small><strong id="visualWorkedDays">0</strong><span class="metric-percent" id="visualWorkedPct">0% do gráfico</span></div>
+   <div class="visual-metric metric-off" data-summary-metric="off"><small>☀ Folgas no mês</small><strong id="visualDaysOff">0</strong><span class="metric-percent" id="visualDaysOffPct">0% do gráfico</span></div>
+   <div class="visual-metric metric-month-balance" data-summary-metric="monthBalance"><small>◈ Saldo do mês</small><strong id="visualMonthBalance">R$ 0,00</strong><span class="metric-percent" id="visualMonthBalancePct">0% do gráfico</span></div>
+   <div class="visual-metric metric-week-balance" data-summary-metric="weekBalance"><small>↗ Saldo da semana</small><strong id="visualWeekBalance">R$ 0,00</strong><span class="metric-percent" id="visualWeekBalancePct">0% do gráfico</span></div>
+   <div class="visual-metric metric-month-expense" data-summary-metric="monthExpense"><small>▤ Gastos do mês</small><strong id="visualMonthExpense">R$ 0,00</strong><span class="metric-percent" id="visualMonthExpensePct">0% do gráfico</span></div>
+   <div class="visual-metric metric-week-expense" data-summary-metric="weekExpense"><small>▣ Gastos da semana</small><strong id="visualWeekExpense">R$ 0,00</strong><span class="metric-percent" id="visualWeekExpensePct">0% do gráfico</span></div>
+  </div>
+ </div>
+ <div class="panel" id="dayEditorPanel"><div class="row spread"><h2 id="selectedTitle">Registro do dia</h2><button id="todayBtn" class="btn secondary small">Hoje</button></div><div class="row" style="margin:8px 0 14px;flex-wrap:wrap"><label class="row"><input id="worked" type="checkbox"><span>Dia trabalhado</span></label><label class="row"><input id="dayOff" type="checkbox"><span>Folga</span></label></div>
+ <div class="row"><div class="field"><label for="gain">Ganhos (R$)</label><input id="gain" type="number" min="0" step=".01" placeholder="0,00" inputmode="decimal"></div><div class="field"><label for="expense">Gastos (R$)</label><input id="expense" type="number" min="0" step=".01" placeholder="0,00" inputmode="decimal"></div></div>
+ <div class="field"><label for="event">Evento / compromisso</label><input id="event" placeholder="Ex.: aniversário da Maria, reunião..."></div><div class="field"><label for="dayEventIcon">Ícone do evento</label><select id="dayEventIcon"><option value="⭐">⭐ Evento importante</option><option value="🎂">🎂 Aniversário</option><option value="🤝">🤝 Reunião</option><option value="🩺">🩺 Consulta</option><option value="📅">📅 Compromisso</option><option value="💼">💼 Trabalho / serviço</option><option value="🎉">🎉 Comemoração</option><option value="💰">💰 Pagamento / receber</option><option value="💳">💳 Conta / cartão</option><option value="🏠">🏠 Casa / família</option><option value="📌">📌 Outro</option></select></div><details class="optional-fields"><summary>＋ Observações (opcional)</summary><div class="field"><label for="gainNotes">Detalhes dos ganhos</label><textarea id="gainNotes" placeholder="Ex.: serviço realizado, venda, cliente..."></textarea></div><div class="field"><label for="expenseNotes">Detalhes dos gastos</label><textarea id="expenseNotes" placeholder="Ex.: combustível, almoço..."></textarea></div><div class="field" style="margin-bottom:0"><label for="notes">Outras observações</label><textarea id="notes" placeholder="Outras anotações deste dia..."></textarea></div></details><div class="row"><button class="btn" id="saveDay" style="flex:1">Salvar registro</button><button class="btn secondary" id="clearDay">Limpar campos</button></div><p id="saveMsg" class="muted" style="font-size:12px;margin:9px 0 0" aria-live="polite">Os registros ficam salvos neste navegador.</p></div>
+</section>
+<section id="tab-summary" class="hidden">
+  <div class="quick-guide"><span class="guide-icon">📊</span><div><strong>Veja como está seu dinheiro</strong><br>Os valores são calculados com base no que você registrou no Calendário. Toque nos cartões ou gráficos para ver os detalhes.</div></div>
+ <div class="dashboard-head"><div><div class="dashboard-kicker">Painel financeiro</div><h2>Seu resumo</h2><p>Acompanhe ganhos, gastos e resultado.</p></div><div class="dashboard-mark">↗</div></div>
+ <div class="panel dashboard-hero"><span class="dashboard-hero-label">Saldo deste mês</span><strong class="dashboard-hero-value" id="dashboardMonthBalance">R$ 0,00</strong><span class="dashboard-hero-note" id="dashboardMonthNote">Ganhos menos gastos registrados no mês</span></div>
+ <div class="quick-tiles" aria-label="Detalhes financeiros">
+  <button class="quick-tile" id="openSavingsTile"><span>🐷</span><small>Poupança</small><strong id="savingsTileValue">R$ 0,00</strong><em>Toque para detalhes</em></button>
+  <button class="quick-tile" id="openGoalsTile"><span>🎯</span><small>Metas e limites</small><strong>Semana e mês</strong><em>Toque para editar</em></button>
+ </div>
+ <div class="panel"><div class="dashboard-section-title"><h2 style="margin:0">Visão geral</h2><span class="badge">Semana + mês</span></div><div class="field"><label for="period">Escolha o período dos gráficos</label><select id="period"><option value="both">Semana e mês (comparar)</option><option value="week">Somente esta semana</option><option value="month">Somente este mês</option><option value="all">Todo o período</option></select></div><div class="statgrid"><div class="stat dashboard-stat gain-card"><div class="stat-icon">↗</div><small>Ganhos da semana</small><strong class="green" id="weekGain">R$ 0,00</strong></div><div class="stat dashboard-stat expense-card"><div class="stat-icon">↘</div><small>Gastos da semana</small><strong class="red" id="weekExpense">R$ 0,00</strong></div><div class="stat dashboard-stat balance-card"><div class="stat-icon">＝</div><small>Saldo da semana</small><strong id="weekNet">R$ 0,00</strong></div><div class="stat dashboard-stat work-card"><div class="stat-icon">▦</div><small>Dias trabalhados</small><strong id="weekDays">0</strong></div><div class="stat dashboard-stat gain-card"><div class="stat-icon">↗</div><small>Ganhos do mês</small><strong class="green" id="monthGain">R$ 0,00</strong></div><div class="stat dashboard-stat expense-card"><div class="stat-icon">↘</div><small>Gastos do mês</small><strong class="red" id="monthExpense">R$ 0,00</strong></div><div class="stat dashboard-stat balance-card"><div class="stat-icon">＝</div><small>Saldo do mês</small><strong id="monthNet">R$ 0,00</strong></div><div class="stat dashboard-stat work-card"><div class="stat-icon">▦</div><small>Dias trabalhados no mês</small><strong id="monthDays">0</strong></div></div></div>
+ <div class="panel goals-panel" id="goalsPanel">
+   <div class="dashboard-section-title"><h2 style="margin:0">🎯 Limites e metas</h2><span class="badge">Semana e mês</span></div>
+   <p class="muted" style="font-size:12px;margin:7px 0 12px">Defina seus valores. Os avisos aparecem aqui quando os gastos chegarem a 80% do limite ou quando você estiver perto de alcançar sua meta.</p>
+   <div class="row goals-fields"><div class="field"><label for="weeklyExpenseLimit">Limite de gastos da semana (R$)</label><input id="weeklyExpenseLimit" type="number" min="0" step=".01" placeholder="Ex.: 300" inputmode="decimal"></div><div class="field"><label for="monthlyExpenseLimit">Limite de gastos do mês (R$)</label><input id="monthlyExpenseLimit" type="number" min="0" step=".01" placeholder="Ex.: 1200" inputmode="decimal"></div></div>
+   <div class="row"><div class="field"><label for="weeklyGainGoal">Meta de ganhos da semana (R$)</label><input id="weeklyGainGoal" type="number" min="0" step=".01" placeholder="Ex.: 800" inputmode="decimal"></div><div class="field"><label for="monthlyGainGoal">Meta de ganhos do mês (R$)</label><input id="monthlyGainGoal" type="number" min="0" step=".01" placeholder="Ex.: 3000" inputmode="decimal"></div></div>
+   <button class="btn" id="saveGoals" style="width:100%">Salvar metas e limites</button><p id="goalsSaveMsg" class="muted" style="font-size:12px;margin:8px 0 0" aria-live="polite"></p><div id="goalsAlerts" style="margin-top:10px" aria-live="polite"></div>
+  </div>
+ <div class="panel comparison-panel"><div class="dashboard-section-title"><h2 style="margin:0">Ganhos x gastos</h2><span class="badge">Comparativo</span></div>
+  <div class="comparison-block"><div class="comparison-title"><strong>Esta semana</strong><span id="weekCompareNet">Saldo: R$ 0,00</span></div>
+   <div class="bar-line"><span class="bar-label">Ganhos</span><div><div class="bar-track"><div class="bar-fill gain-fill" id="weekGainBar"></div></div><div class="bar-value green" id="weekGainBarValue">R$ 0,00</div></div></div>
+   <div class="bar-line"><span class="bar-label">Gastos</span><div><div class="bar-track"><div class="bar-fill expense-fill" id="weekExpenseBar"></div></div><div class="bar-value red" id="weekExpenseBarValue">R$ 0,00</div></div></div>
+  </div>
+  <div class="comparison-block"><div class="comparison-title"><strong>Este mês</strong><span id="monthCompareNet">Saldo: R$ 0,00</span></div>
+   <div class="bar-line"><span class="bar-label">Ganhos</span><div><div class="bar-track"><div class="bar-fill gain-fill" id="monthGainBar"></div></div><div class="bar-value green" id="monthGainBarValue">R$ 0,00</div></div></div>
+   <div class="bar-line"><span class="bar-label">Gastos</span><div><div class="bar-track"><div class="bar-fill expense-fill" id="monthExpenseBar"></div></div><div class="bar-value red" id="monthExpenseBarValue">R$ 0,00</div></div></div>
+  </div>
+ </div>
+ <div class="chartgrid"><div class="chartcard gains"><h3>● Ganhos</h3><div class="rings" id="gainRings"></div><div class="netline"><span>Total do mês/período</span><strong class="green" id="gainTotal">R$ 0,00</strong></div></div><div class="chartcard expenses"><h3>● Gastos</h3><div class="rings" id="expenseRings"></div><div class="netline"><span>Total do mês/período</span><strong class="red" id="expenseTotal">R$ 0,00</strong></div></div></div>
+ 
+  <div class="panel" id="savingsPanel">
+   <div class="dashboard-section-title"><h2 style="margin:0">🐷 Minha poupança</h2><span class="badge">Reserva guardada</span></div>
+   <p class="muted" style="font-size:12px;margin:7px 0">Registre o dinheiro que separou para guardar. Isso não será contado como gasto do dia.</p>
+   <span class="savings-balance" id="savingsBalance">R$ 0,00</span>
+   <div class="row"><div class="field"><label for="savingsAction">Movimentação</label><select id="savingsAction"><option value="deposit">Guardar dinheiro</option><option value="withdraw">Retirar da poupança</option></select></div><div class="field"><label for="savingsAmount">Valor (R$)</label><input id="savingsAmount" type="number" min="0.01" step=".01" placeholder="400,00" inputmode="decimal"></div></div>
+   <div class="field"><label for="savingsNote">Descrição (opcional)</label><input id="savingsNote" placeholder="Ex.: reserva do mês"></div>
+   <button class="btn" id="saveSavings" style="width:100%">Salvar movimentação</button>
+   <button class="btn secondary" id="editSavingsBalance" style="width:100%;margin-top:8px">Ajustar valor total guardado</button>
+   <div id="editSavingsBalanceFields" class="panel hidden" style="padding:12px;margin-top:10px">
+    <p class="muted" style="font-size:12px;margin:0 0 10px">Informe o saldo correto que deseja ver na poupança. O aplicativo registrará a diferença como um ajuste no histórico, sem apagar as movimentações anteriores.</p>
+    <div class="field"><label for="savingsTargetBalance">Novo total guardado (R$)</label><input id="savingsTargetBalance" type="number" min="0" step=".01" inputmode="decimal" placeholder="400,00"></div>
+    <div class="field"><label for="savingsAdjustmentNote">Motivo do ajuste (opcional)</label><input id="savingsAdjustmentNote" placeholder="Ex.: corrigir saldo inicial"></div>
+    <div class="row"><button class="btn" id="confirmSavingsBalance" style="flex:1">Confirmar ajuste</button><button class="btn secondary" id="cancelSavingsBalance">Cancelar</button></div>
+   </div>
+   <p id="savingsMsg" class="muted" style="font-size:12px;margin-bottom:0" aria-live="polite"></p>
+   <div class="savings-ledger"><strong>Movimentações recentes</strong><div id="savingsEntries"></div></div>
+  </div>
+
+<div class="panel" style="margin-top:13px"><h2>Seus registros anteriores</h2><div id="entryList"></div></div></section>
+<section id="tab-events" class="hidden">
+  <div class="quick-guide"><span class="guide-icon">🔔</span><div><strong>Organize pagamentos e compromissos</strong><br>Cadastre o que precisa pagar, o que vai receber ou um evento futuro. Para uma conta parcelada, marque a opção de parcelas.</div></div>
+ <div class="panel"><h2>Novo pagamento, fatura ou evento</h2><div class="field"><label for="evTitle">Descrição</label><input id="evTitle" placeholder="Ex.: fatura do cartão, pagamento do cliente"></div><div class="field"><label for="evCategory">Categoria</label><select id="evCategory"><option value="pagamento">💰 Pagamento</option><option value="fatura">🧾 Fatura</option><option value="evento">📅 Evento / compromisso</option></select></div><div class="row"><div class="field"><label for="evDate">Data de vencimento / evento</label><input id="evDate" type="date" required></div><div class="field"><label for="evValue">Valor original total (R$)</label><input id="evValue" type="number" min="0" step=".01" placeholder="700,00" inputmode="decimal"></div></div><div class="field"><label for="evType">Direção do dinheiro</label><select id="evType"><option value="receber">Vou receber</option><option value="pagar">Vou pagar</option></select><small class="muted">Escolha se o dinheiro entra ou sai.</small></div><div class="field"><label for="evSettled">Valor já pago / recebido (R$)</label><input id="evSettled" type="number" min="0" step=".01" placeholder="0,00" inputmode="decimal"><small class="muted">Se a fatura é R$ 700 e você adiantou R$ 300, informe 300 aqui.</small></div>
+<div class="field"><label class="row" style="margin:4px 0 8px"><input id="evInstallments" type="checkbox"><span>Este pagamento / fatura é parcelado</span></label></div>
+<div id="installmentFields" class="panel hidden" style="padding:12px;margin:0 0 12px">
+ <div class="row">
+  <div class="field"><label for="evInstallmentCount">Quantidade de parcelas</label><input id="evInstallmentCount" type="number" min="2" max="120" step="1" value="2" inputmode="numeric"></div>
+  <div class="field"><label for="evInstallmentFirstDate">Data da 1ª parcela</label><input id="evInstallmentFirstDate" type="date"></div>
+ </div>
+ <p class="muted" style="font-size:12px;margin:0 0 8px">As próximas parcelas vencem mensalmente no mesmo dia. Marque abaixo as parcelas que já foram pagas ou recebidas.</p>
+ <div id="installmentChecklist"></div>
+</div><div class="field"><label for="evIcon">Ícone</label><select id="evIcon"><option value="💳">💳 Fatura do cartão</option><option value="👤">👤 Pessoa / dívida</option><option value="💰">💰 Pagamento que vou receber</option><option value="🏠">🏠 Aluguel / moradia</option><option value="💧">💧 Água</option><option value="💡">💡 Energia</option><option value="📱">📱 Telefone / internet</option><option value="🛒">🛒 Compras</option><option value="🎂">🎂 Aniversário</option><option value="🤝">🤝 Reunião</option><option value="🩺">🩺 Consulta</option><option value="📅">📅 Compromisso</option><option value="⭐">⭐ Outro evento</option></select></div><label class="row" style="margin:4px 0 12px"><input id="evReminder" type="checkbox" checked><span>Lembrar um dia antes</span></label><label class="row" style="margin:4px 0 12px"><input id="evPriority" type="checkbox"><span>⭐ Marcar como prioridade</span></label><details class="optional-fields"><summary>＋ Mais detalhes (opcional)</summary><div class="field" style="margin:12px 0 0"><label for="evNotes">Observações</label><textarea id="evNotes" placeholder="Detalhes do pagamento ou evento..."></textarea></div></details><button class="btn" id="saveEvent" style="width:100%">Salvar evento / pagamento</button><button class="btn secondary" id="enableNotifications" style="width:100%;margin-top:8px">Ativar notificações</button><p class="muted" style="font-size:12px">O lembrete é conferido quando o aplicativo está aberto. Para avisos com o aplicativo fechado, será necessária uma configuração de notificações em segundo plano no Android.</p><p id="eventMsg" class="muted" style="font-size:12px;margin-bottom:0"></p></div>
+ <div class="panel"><div class="field" style="margin-bottom:0"><label for="eventFilter">Mostrar categoria</label><select id="eventFilter"><option value="todos">Todas as categorias</option><option value="pagamento">💰 Pagamentos</option><option value="fatura">🧾 Faturas</option><option value="evento">📅 Eventos / compromissos</option></select></div></div>
+ <div class="event-columns"><div class="panel"><h2>◷ Pendentes</h2><p class="muted" style="font-size:12px">Pagamentos a fazer ou valores a receber.</p><div id="pendingEvents"></div></div><div class="panel"><h2>✓ Concluídos</h2><p class="muted" style="font-size:12px">Pagamentos feitos e valores recebidos.</p><div id="completedEvents"></div></div></div>
+</section>
+<section id="tab-settings" class="hidden">
+  <div class="quick-guide settings-intro"><span class="guide-icon">⚙️</span><div><strong>Central de opções</strong><br>As opções estão organizadas em cartões. Toque no que deseja ajustar.</div></div>
+ <div class="settings-tiles">
+ <div class="panel settings-tile"><h2 id="settingsTitle"><span class="tile-icon">🎨</span><span>Configurações do aplicativo</span></h2><p class="muted" style="font-size:13px">Personalize o idioma e a aparência. Suas escolhas ficam salvas neste dispositivo.</p>
+ <div class="field"><label id="appLanguageLabel" for="appLanguage">Idioma</label><select id="appLanguage"><option value="pt-BR">Português (Brasil)</option><option value="en">English</option><option value="es">Español</option></select><small class="muted">A seleção de idioma será aplicada às principais áreas e opções do aplicativo.</small></div>
+ <div class="field"><label id="appAppearanceLabel" for="appAppearance">Aparência</label><select id="appAppearance"><option value="dark">Escura</option><option value="light">Clara</option><option value="system">Seguir o dispositivo</option></select></div><p id="settingsMsg" class="muted" style="font-size:12px" aria-live="polite"></p></div>
+ <div class="panel settings-tile"><h2 id="backupTitle"><span class="tile-icon">💾</span><span>Backup dos seus dados</span></h2><p class="muted" style="font-size:13px">Salve uma cópia de todos os registros, ganhos, gastos, pagamentos, faturas e eventos em um arquivo no celular. Você poderá carregar esse arquivo para recuperar os dados depois ou em outro aparelho.</p><div class="row" style="flex-wrap:wrap"><button class="btn" id="export">Salvar backup no celular</button><button class="btn secondary" id="importBtn">Carregar backup salvo</button><input id="importFile" type="file" accept="application/json,.json" class="hidden"></div><p class="muted" style="font-size:12px;margin-bottom:0">Dica: faça um novo backup sempre que fizer mudanças importantes. O arquivo de backup não é atualizado sozinho; o aplicativo continua salvando os dados neste navegador.</p><p id="backupMsg" class="muted" style="font-size:12px" aria-live="polite"></p></div>
+
+ <div class="panel settings-tile"><h2><span class="tile-icon">🔔</span><span>Lembretes</span></h2><p class="muted" style="font-size:13px">Os próximos vencimentos aparecem na aba Calendário. Você também pode permitir notificações, quando o navegador oferecer suporte.</p><button class="btn secondary" id="settingsNotifications">Ativar notificações</button></div></div>
+</section>
+</main>
+<nav class="tabs android-bottom-nav" aria-label="Navegação principal">
+<button class="active" data-tab="calendar" aria-label="Calendário"><span class="nav-icon">▦</span><span class="nav-label">Calendário</span></button>
+<button data-tab="summary" aria-label="Resumo"><span class="nav-icon">◔</span><span class="nav-label">Resumo</span></button>
+<button data-tab="events" aria-label="Eventos"><span class="nav-icon">▣</span><span class="nav-label">Eventos</span></button>
+<button data-tab="settings" aria-label="Configurações"><span class="nav-icon">⚙</span><span class="nav-label">Config.</span></button>
+</nav>
+<script>
+(()=>{const KEYS={days:'meuTrabalhoGanhos_v2',events:'meuTrabalhoGanhos_events_v1',savings:'meuTrabalhoGanhos_savings_v1'};let records={},events=[],savings=[];try{records=JSON.parse(localStorage.getItem(KEYS.days)||'{}')||{}}catch(e){}try{events=JSON.parse(localStorage.getItem(KEYS.events)||'[]')||[]}catch(e){}try{savings=JSON.parse(localStorage.getItem(KEYS.savings)||'[]')||[]}catch(e){}
+const $=id=>document.getElementById(id),money=n=>(Number(n)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}),dateKey=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`,todayKey=dateKey(new Date());let selected=new Date();selected.setHours(12,0,0,0);let shown=new Date(selected.getFullYear(),selected.getMonth(),1),editingEventId=null;
+const getRec=k=>records[k]||{worked:false,dayOff:false,gain:0,expense:0,event:'',notes:'',gainNotes:'',expenseNotes:''},persistDays=()=>{try{localStorage.setItem(KEYS.days,JSON.stringify(records));return true}catch(e){return false}},persistEvents=()=>{try{localStorage.setItem(KEYS.events,JSON.stringify(events));return true}catch(e){return false}};
+function dateFromKey(k){let [y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d,12)}function keysInRange(s,e){let a=[];for(let d=new Date(s);d<=e;d.setDate(d.getDate()+1))a.push(dateKey(d));return a}function weekRange(d){let s=new Date(d);s.setDate(s.getDate()-(s.getDay()+6)%7);s.setHours(0,0,0,0);let e=new Date(s);e.setDate(e.getDate()+6);return[s,e]}function weekKeys(d){let[s,e]=weekRange(d);return keysInRange(s,e)}function monthKeys(d){return keysInRange(new Date(d.getFullYear(),d.getMonth(),1),new Date(d.getFullYear(),d.getMonth()+1,0))}function sum(keys){return keys.reduce((a,k)=>{let r=getRec(k);a.gain+=Number(r.gain)||0;a.expense+=Number(r.expense)||0;a.days+=r.worked?1:0;return a},{gain:0,expense:0,days:0})}function allKeys(){return Object.keys(records).sort()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+const SETTINGS_KEY='meuTrabalhoGanhos_settings_v1';
+function readSettings(){try{return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{}}catch(e){return {}}}
+function loadSettings(){let s=readSettings();$('appLanguage').value=s.language||'pt-BR';$('appAppearance').value=s.appearance||'dark';applyAppearance($('appAppearance').value);applyLanguage($('appLanguage').value)}
+function applyAppearance(mode){let useLight=mode==='light'||(mode==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches);document.body.classList.toggle('light',!!useLight);document.querySelector('meta[name="theme-color"]').setAttribute('content',useLight?'#f3f5f8':'#101216')}
+function applyLanguage(lang){
+ const labels={
+  'pt-BR':{calendar:'📅 Calendário',summary:'📊 Resumo',events:'🗓️ Eventos',settings:'⚙️ Config.',upcoming:'🔔 Lembretes próximos',upcomingDesc:'Pagamentos e faturas vencidos ou com vencimento nos próximos 7 dias.',noUpcoming:'Nenhum pagamento ou fatura próximo do vencimento.',overdue:'Vencido',today:'Vence hoje',days:'Vence em',settingsTitle:'⚙️ Configurações do aplicativo',language:'Idioma',appearance:'Aparência',dark:'Escura',light:'Clara',system:'Seguir o dispositivo',backupTitle:'💾 Backup dos seus dados',saveBackup:'Salvar backup no celular',loadBackup:'Carregar backup salvo',notif:'Ativar notificações',saved:'Configurações salvas.'},
+  'en':{calendar:'📅 Calendar',summary:'📊 Summary',events:'🗓️ Events',settings:'⚙️ Settings',upcoming:'🔔 Upcoming reminders',upcomingDesc:'Overdue payments and bills, or those due in the next 7 days.',noUpcoming:'No upcoming payments or bills.',overdue:'Overdue',today:'Due today',days:'Due in',settingsTitle:'⚙️ App settings',language:'Language',appearance:'Appearance',dark:'Dark',light:'Light',system:'Follow device',backupTitle:'💾 Your data backup',saveBackup:'Save backup to device',loadBackup:'Load saved backup',notif:'Enable notifications',saved:'Settings saved.'},
+  'es':{calendar:'📅 Calendario',summary:'📊 Resumen',events:'🗓️ Eventos',settings:'⚙️ Ajustes',upcoming:'🔔 Próximos recordatorios',upcomingDesc:'Pagos y facturas vencidos o con vencimiento en los próximos 7 días.',noUpcoming:'No hay pagos ni facturas próximos.',overdue:'Vencido',today:'Vence hoy',days:'Vence en',settingsTitle:'⚙️ Ajustes de la aplicación',language:'Idioma',appearance:'Apariencia',dark:'Oscura',light:'Clara',system:'Seguir dispositivo',backupTitle:'💾 Copia de seguridad',saveBackup:'Guardar copia en el móvil',loadBackup:'Cargar copia guardada',notif:'Activar notificaciones',saved:'Ajustes guardados.'}
+ };
+ const t=labels[lang]||labels['pt-BR'];document.documentElement.lang=lang;
+ const tabBtns=document.querySelectorAll('.tabs button');if(tabBtns.length>=4){[t.calendar,t.summary,t.events,t.settings].forEach((label,i)=>{const span=tabBtns[i].querySelector('.nav-label');if(span)span.textContent=label.replace(/^\S+\s*/, '');else tabBtns[i].textContent=label;});}
+ $('upcomingTitle')&&($('upcomingTitle').textContent=t.upcoming);
+ $('upcomingDesc')&&($('upcomingDesc').textContent=t.upcomingDesc);
+ $('appLanguageLabel')&&($('appLanguageLabel').textContent=t.language);
+ $('appAppearanceLabel')&&($('appAppearanceLabel').textContent=t.appearance);
+ $('settingsTitle')&&($('settingsTitle').textContent=t.settingsTitle);
+ $('backupTitle')&&($('backupTitle').textContent=t.backupTitle);
+ $('export').textContent=t.saveBackup;$('importBtn').textContent=t.loadBackup;$('settingsNotifications').textContent=t.notif;
+ const appAppearance=$('appAppearance');if(appAppearance){appAppearance.options[0].text=t.dark;appAppearance.options[1].text=t.light;appAppearance.options[2].text=t.system}
+ const desc=$('upcomingDescription');if(desc)desc.textContent=t.upcomingDesc;
+ window.__mtgText=t;renderUpcomingReminders();
+}
+function saveSettings(){let s={language:$('appLanguage').value,appearance:$('appAppearance').value};try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(s));applyAppearance(s.appearance);applyLanguage(s.language);$('settingsMsg').textContent=(window.__mtgText||{}).saved||'Configurações salvas.'}catch(e){$('settingsMsg').textContent='Não foi possível salvar as configurações.'}}
+function renderUpcomingReminders(){
+ const box=$('upcomingReminders');if(!box)return;const t=window.__mtgText||{noUpcoming:'Nenhum pagamento ou fatura próximo do vencimento.',overdue:'Vencido',today:'Vence hoje',days:'Vence em'};
+ const now=new Date();now.setHours(0,0,0,0);const end=new Date(now);end.setDate(end.getDate()+7);
+ const upcoming=events.map(normalizeEvent).filter(ev=>ev.status!=='pago'&&ev.category!=='evento').filter(ev=>{let d=dateFromKey(ev.date);d.setHours(0,0,0,0);return d<=end}).sort((a,b)=>a.date.localeCompare(b.date));
+ $('upcomingCount').textContent=String(upcoming.length);box.innerHTML='';
+ if(!upcoming.length){box.innerHTML='<div class="emptymsg">'+t.noUpcoming+'</div>';return}
+ upcoming.forEach(ev=>{let d=dateFromKey(ev.date);d.setHours(0,0,0,0);let diff=Math.round((d-now)/86400000);let due=diff<0?t.overdue:diff===0?t.today:t.days+' '+diff+' '+(diff===1?'dia':'dias');let remaining=Math.max(0,ev.value-ev.settled);let el=document.createElement('div');el.className='entry'+(ev.priority?' event-priority':'');el.dataset.eventId=ev.id;el.innerHTML=`<div class="row spread"><strong>${esc(ev.icon||'💳')} ${esc(ev.title)}</strong><span class="badge ${diff<0?'pending':'partial'}">${esc(due)}</span></div><small>${ev.category==='fatura'?'🧾 Fatura':'💰 Pagamento'} · ${dateFromKey(ev.date).toLocaleDateString(document.documentElement.lang||'pt-BR',{day:'2-digit',month:'short',year:'numeric'})}</small><div class="row spread" style="margin-top:5px"><span class="muted">${ev.type==='receber'?'A receber':'A pagar'}</span><strong class="${ev.type==='receber'?'green':'red'}">${money(remaining)}</strong></div><button class="btn secondary small" data-goto-events="${ev.id}" style="margin-top:7px">Ver em Eventos</button>`;box.append(el)});
+ box.querySelectorAll('[data-goto-events]').forEach(b=>b.onclick=()=>{switchTab('events');let ev=events.find(x=>x.id===b.dataset.gotoEvents);if(ev){let el=document.querySelector('[data-editev="'+ev.id+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'})}});
+}
+function renderVisualSummary(){
+ const today=dateFromKey(todayKey),todayRec=getRec(todayKey),week=sum(weekKeys(today)),month=sum(monthKeys(today));
+ const days=monthKeys(today);let worked=0,off=0;days.forEach(k=>{const r=getRec(k);if(r.worked)worked++;if(r.dayOff)off++});
+ $('visualTodayGain').textContent=money(todayRec.gain);$('visualTodayExpense').textContent=money(todayRec.expense);
+ $('visualWorkedDays').textContent=String(worked);$('visualDaysOff').textContent=String(off);
+ const wn=week.gain-week.expense,mn=month.gain-month.expense;
+ $('visualWeekBalance').textContent=money(wn);$('visualMonthBalance').textContent=money(mn);
+ $('visualWeekBalance').style.color=wn<0?'var(--red)':'var(--metric-color)';$('visualMonthBalance').style.color=mn<0?'var(--red)':'var(--metric-color)';
+ $('visualWeekExpense').textContent=money(week.expense);$('visualMonthExpense').textContent=money(month.expense);
+ // O anel compara os seis indicadores visualmente. Valores negativos de saldo usam magnitude;
+ // quando tudo está zerado, mantém fatias iguais para que todas as cores continuem visíveis.
+ const metrics=[
+  {key:'worked',value:worked,color:'#ad50f0',pct:'visualWorkedPct'},
+  {key:'off',value:off,color:'#12d4e8',pct:'visualDaysOffPct'},
+  {key:'monthBalance',value:Math.abs(mn),color:'#347fe8',pct:'visualMonthBalancePct'},
+  {key:'weekExpense',value:week.expense,color:'#ff4249',pct:'visualWeekExpensePct'},
+  {key:'monthExpense',value:month.expense,color:'#ffc21c',pct:'visualMonthExpensePct'},
+  {key:'weekBalance',value:Math.abs(wn),color:'#16e89a',pct:'visualWeekBalancePct'}
+ ];
+ const total=metrics.reduce((sum,m)=>sum+(Number(m.value)||0),0),minDeg=6,usable=360-minDeg*metrics.length;
+ let cursor=0,stops=[];
+ metrics.forEach((m,i)=>{const share=total>0?(Number(m.value)||0)/total:1/metrics.length;const deg=minDeg+(total>0?share*usable:0);const end=cursor+deg;stops.push(`${m.color} ${cursor.toFixed(2)}deg ${end.toFixed(2)}deg`);cursor=end;const pct=total>0?Math.round((Number(m.value)||0)/total*100):Math.round(100/metrics.length);const el=$(m.pct);if(el)el.textContent=`${pct}% do gráfico`;});
+ // Corrige o último limite para fechar exatamente em 360 graus.
+ if(stops.length){const last=metrics[metrics.length-1];stops[stops.length-1]=`${last.color} ${cursor-(minDeg+(total>0?(Number(last.value)||0)/total*usable:0)).toFixed(2)}deg 360deg`;}
+ const ring=$('visualSummaryRing');if(ring)ring.style.background=`conic-gradient(${stops.join(',')})`;
+ const label=$('visualSummaryDayLabel');if(label)label.textContent='Hoje';
+}
+
+function renderCalendar(){ $('monthTitle').textContent=shown.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});let cal=$('calendar');cal.innerHTML='';['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'].forEach(x=>{let e=document.createElement('div');e.className='dow';e.textContent=x;cal.append(e)});let off=(new Date(shown.getFullYear(),shown.getMonth(),1).getDay()+6)%7;for(let i=0;i<off;i++){let e=document.createElement('div');e.className='day empty';cal.append(e)}for(let n=1;n<=new Date(shown.getFullYear(),shown.getMonth()+1,0).getDate();n++){let d=new Date(shown.getFullYear(),shown.getMonth(),n,12),k=dateKey(d),r=getRec(k),dayEvents=events.filter(x=>x.date===k),b=document.createElement('button');b.className='day';if(k===dateKey(selected))b.classList.add('selected');if(k===todayKey)b.classList.add('today');if(r.dayOff)b.classList.add('dayoff');else if(r.worked)b.classList.add('worked');b.innerHTML=`<span>${n}</span>${r.event?`<span class="eventicon" title="${esc(r.event)}">${esc(r.eventIcon||'⭐')}</span>`:''}${dayEvents.length?`<span class="eventicon">${esc(dayEvents[0].icon||'⭐')}${dayEvents.length>1?' +'+(dayEvents.length-1):''}</span>`:''}${Number(r.gain)||Number(r.expense)?`<span class="mini">R$${Math.round(Number(r.gain)||Number(r.expense))}</span>`:''}`;b.onclick=()=>{selected=d;loadDay();renderCalendar();openDayEditor()};cal.append(b)}renderUpcomingReminders();renderVisualSummary()}
+function loadDay(){let k=dateKey(selected),r=getRec(k);$('selectedTitle').textContent=selected.toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'long'});$('worked').checked=!!r.worked;$('dayOff').checked=!!r.dayOff;$('gain').value=r.gain||'';$('expense').value=r.expense||'';$('event').value=r.event||'';$('dayEventIcon').value=r.eventIcon||'⭐';$('notes').value=r.notes||'';$('gainNotes').value=r.gainNotes||'';$('expenseNotes').value=r.expenseNotes||''}
+function saveDay(){let k=dateKey(selected);records[k]={worked:$('dayOff').checked?false:$('worked').checked,dayOff:$('dayOff').checked,gain:Math.max(0,Number($('gain').value)||0),expense:Math.max(0,Number($('expense').value)||0),event:$('event').value.trim(),eventIcon:$('dayEventIcon').value,notes:$('notes').value.trim(),gainNotes:$('gainNotes').value.trim(),expenseNotes:$('expenseNotes').value.trim()};let r=records[k];if(!r.worked&&!r.dayOff&&!r.gain&&!r.expense&&!r.event&&!r.notes&&!r.gainNotes&&!r.expenseNotes)delete records[k];$('saveMsg').textContent=persistDays()?'Registro salvo neste celular.':'Não foi possível salvar; exporte um backup.';renderCalendar();renderAll()}
+function fillStats(prefix,s){$(prefix+'Gain').textContent=money(s.gain);$(prefix+'Expense').textContent=money(s.expense);$(prefix+'Net').textContent=money(s.gain-s.expense);$(prefix+'Net').className=s.gain-s.expense<0?'red':'';$(prefix+'Days').textContent=s.days}
+function renderEntries(){let box=$('entryList'),keys=allKeys().filter(k=>{let r=getRec(k);return r.worked||r.dayOff||r.gain||r.expense||r.event||r.notes}).reverse();box.innerHTML='';if(!keys.length){box.innerHTML='<div class="emptymsg">Ainda não há registros salvos.</div>';return}keys.forEach(k=>{let r=getRec(k),d=dateFromKey(k),el=document.createElement('div');el.className='entry';el.innerHTML=`<div class="row spread"><strong>${d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'})}</strong><button class="btn secondary small" data-edit="${k}">Editar</button></div><small>${r.worked?'Dia trabalhado · ':''}${r.event?esc(r.eventIcon||'⭐')+' '+esc(r.event)+' · ':''}${r.dayOff?'Folga · ':''}${esc(r.notes||'')}</small><div class="row spread" style="margin-top:5px"><span class="green">${money(r.gain)}</span><span class="red">${money(r.expense)}</span></div><button class="btn danger small" style="margin-top:8px" data-del="${k}">Apagar registro</button>`;box.append(el)});box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{selected=dateFromKey(b.dataset.edit);shown=new Date(selected.getFullYear(),selected.getMonth(),1);loadDay();renderCalendar();switchTab('calendar')});box.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('Apagar o registro deste dia?')){delete records[b.dataset.del];persistDays();renderAll();renderCalendar()}})}
+function donutRow(label,value,color){let el=document.createElement('div');el.className='ringrow';let donut=document.createElement('div');donut.className='donut';donut.style.background=`conic-gradient(${color} 0 100%, #303641 100% 100%)`;let sp=document.createElement('span');sp.textContent='100%';donut.append(sp);let info=document.createElement('div');info.className='ringinfo';let small=document.createElement('small');small.textContent=label;let strong=document.createElement('strong');strong.style.color=color;strong.textContent=money(value);info.append(small,strong);el.append(donut,info);return el}
+function renderCharts(){let p=$('period').value,w=sum(weekKeys(selected)),m=sum(monthKeys(selected)),a=sum(allKeys()),g=$('gainRings'),e=$('expenseRings');g.innerHTML='';e.innerHTML='';let items=p==='week'?[['Semana',w]]:p==='month'?[['Mês',m]]:p==='all'?[['Todo o período',a]]:[['Semana',w],['Mês',m]];items.forEach(([l,s])=>{g.append(donutRow(l,s.gain,'#36d782'));e.append(donutRow(l,s.expense,'#ff626d'))});let sg=p==='week'?w.gain:p==='month'?m.gain:p==='all'?a.gain:m.gain,se=p==='week'?w.expense:p==='month'?m.expense:p==='all'?a.expense:m.expense;$('gainTotal').textContent=money(sg);$('expenseTotal').textContent=money(se)}
+function renderDashboardBars(){
+ const w=sum(weekKeys(selected)),m=sum(monthKeys(selected));
+ const setBar=(id,value,max)=>{const el=$(id);if(el)el.style.width=(max>0?Math.max(0,Math.min(100,value/max*100)):0)+'%'};
+ const wmax=Math.max(w.gain,w.expense,0),mmax=Math.max(m.gain,m.expense,0);
+ setBar('weekGainBar',w.gain,wmax);setBar('weekExpenseBar',w.expense,wmax);
+ setBar('monthGainBar',m.gain,mmax);setBar('monthExpenseBar',m.expense,mmax);
+ $('weekGainBarValue').textContent=money(w.gain);$('weekExpenseBarValue').textContent=money(w.expense);
+ $('monthGainBarValue').textContent=money(m.gain);$('monthExpenseBarValue').textContent=money(m.expense);
+ $('weekCompareNet').textContent='Saldo: '+money(w.gain-w.expense);
+ $('monthCompareNet').textContent='Saldo: '+money(m.gain-m.expense);
+ $('dashboardMonthBalance').textContent=money(m.gain-m.expense);
+ $('dashboardMonthBalance').className='dashboard-hero-value '+((m.gain-m.expense)<0?'red':'green');
+ $('dashboardMonthNote').textContent=(m.gain-m.expense)<0?'Os gastos superam os ganhos neste mês':'Resultado dos ganhos menos os gastos deste mês';
+}
+function openMoneyDetails(kind,period){
+ const keys=period==='week'?weekKeys(selected):period==='month'?monthKeys(selected):allKeys();
+ const title=kind==='gain'?'Ganhos detalhados':'Gastos detalhados';$('moneyDetailTitle').textContent=title+' · '+(period==='week'?'esta semana':period==='month'?'este mês':'todo o período');
+ const body=$('moneyDetailBody');body.innerHTML='';let total=0,count=0;
+ keys.slice().sort().reverse().forEach(k=>{const r=getRec(k),amount=Number(r[kind==='gain'?'gain':'expense'])||0;if(amount<=0)return;total+=amount;count++;const note=kind==='gain'?(r.gainNotes||''):(r.expenseNotes||'');const general=r.notes||'';const item=document.createElement('div');item.className='detail-item';item.innerHTML=`<div class="row spread"><strong>${dateFromKey(k).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'})}</strong><strong class="${kind==='gain'?'green':'red'}">${money(amount)}</strong></div><div style="margin-top:5px">${esc(note|| (kind==='gain'?'Sem observação de ganho.':'Sem observação de gasto.'))}</div>${general?`<small class="muted">Observação geral: ${esc(general)}</small>`:''}<button class="btn secondary small" data-edit-money-day="${k}" style="margin-top:8px">Editar dia</button>`;body.append(item)});
+ if(!count)body.innerHTML='<div class="emptymsg">Ainda não há '+(kind==='gain'?'ganhos':'gastos')+' registrados neste período. Adicione o valor e a observação no Calendário.</div>';
+ const totalEl=document.createElement('div');totalEl.className='netline';totalEl.innerHTML=`<strong>Total (${count} registro(s))</strong><strong class="${kind==='gain'?'green':'red'}">${money(total)}</strong>`;body.append(totalEl);
+ body.querySelectorAll('[data-edit-money-day]').forEach(b=>b.onclick=()=>{selected=dateFromKey(b.dataset.editMoneyDay);shown=new Date(selected.getFullYear(),selected.getMonth(),1);loadDay();renderCalendar();closeMoneyDetails();switchTab('calendar')});$('moneyDetailOverlay').classList.add('open');
+}
+function closeMoneyDetails(){$('moneyDetailOverlay').classList.remove('open')}
+function setupMoneyDetailClicks(){document.querySelectorAll('.gain-card,.expense-card,.chartcard.gains,.chartcard.expenses,.bar-line').forEach(el=>{if(el.dataset.moneyClickBound)return;el.dataset.moneyClickBound='1';el.classList.add('tap-detail');el.setAttribute('tabindex','0');el.setAttribute('role','button');el.addEventListener('click',ev=>{const isGain=el.classList.contains('gain-card')||el.classList.contains('gains')||!!el.querySelector('.gain-fill')||!!el.querySelector('.gain-fill');const period=el.closest('.comparison-block')?(el.closest('.comparison-block').querySelector('.comparison-title strong')?.textContent.includes('semana')?'week':'month'):((el.querySelector('small')?.textContent||'').toLowerCase().includes('semana')?'week':(el.querySelector('small')?.textContent||'').toLowerCase().includes('mês')?'month':$('period').value==='week'?'week':$('period').value==='all'?'all':'month');openMoneyDetails(isGain?'gain':'expense',period)});el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();el.click()}})})}
+const GOALS_KEY='meuTrabalhoGanhos_goals_v1';
+function readGoals(){try{return JSON.parse(localStorage.getItem(GOALS_KEY)||'{}')||{}}catch(e){return {}}}
+function loadGoals(){const g=readGoals();['weeklyExpenseLimit','monthlyExpenseLimit','weeklyGainGoal','monthlyGainGoal'].forEach(id=>$(id).value=g[id]??'');renderGoalsAlerts()}
+function saveGoals(){const g={};['weeklyExpenseLimit','monthlyExpenseLimit','weeklyGainGoal','monthlyGainGoal'].forEach(id=>{const raw=$(id).value;g[id]=raw===''?0:Math.max(0,Number(raw)||0)});try{localStorage.setItem(GOALS_KEY,JSON.stringify(g));$('goalsSaveMsg').textContent='Limites e metas salvos neste celular.';renderGoalsAlerts()}catch(e){$('goalsSaveMsg').textContent='Não foi possível salvar os limites e metas.'}}
+function renderGoalsAlerts(){
+ const box=$('goalsAlerts');if(!box)return;const g=readGoals(),w=sum(weekKeys(selected)),m=sum(monthKeys(selected)),items=[];
+ function expense(label,spent,limit){if(!(Number(limit)>0))return;const pct=spent/limit*100,remaining=limit-spent;if(spent>=limit)items.push(['danger','🚨 Limite ultrapassado: '+label+'. Gastos: '+money(spent)+' de '+money(limit)+'. Você passou '+money(spent-limit)+'.']);else if(pct>=80)items.push(['warning','⚠️ Atenção: '+label+' está em '+Math.round(pct)+'% do limite. Gastos: '+money(spent)+' de '+money(limit)+'. Restam '+money(remaining)+'.']);else items.push(['ok','✓ '+label+': '+money(spent)+' de '+money(limit)+' gastos ('+Math.round(pct)+'%). Restam '+money(remaining)+'.'])}
+ function gain(label,earned,goal){if(!(Number(goal)>0))return;const pct=earned/goal*100,remaining=goal-earned;if(earned>=goal)items.push(['ok','🎉 Meta de ganhos alcançada: '+label+'! Você ganhou '+money(earned)+' para uma meta de '+money(goal)+'.']);else if(pct>=80)items.push(['warning','💪 Quase lá: '+label+' está em '+Math.round(pct)+'% da meta. Ganhos: '+money(earned)+' de '+money(goal)+'. Faltam '+money(remaining)+'.']);else items.push(['info','🎯 '+label+': '+money(earned)+' de '+money(goal)+' ('+Math.round(pct)+'%). Faltam '+money(remaining)+'.'])}
+ expense('gastos da semana',w.expense,g.weeklyExpenseLimit);expense('gastos do mês',m.expense,g.monthlyExpenseLimit);gain('meta semanal',w.gain,g.weeklyGainGoal);gain('meta mensal',m.gain,g.monthlyGainGoal);box.innerHTML='';
+ if(!items.length){box.innerHTML='<div class="emptymsg">Defina um limite ou uma meta acima para ver seus avisos e seu progresso aqui.</div>';return}
+ items.forEach(([type,msg])=>{const el=document.createElement('div');el.style.cssText='padding:10px 11px;margin-top:7px;border-radius:10px;font-size:13px;'+(type==='danger'?'background:#48232a;color:#ffb3b8;border:1px solid #79333c;':type==='warning'?'background:#3b3220;color:#f6c76b;border:1px solid #695329;':type==='ok'?'background:#19392a;color:#8ce6b5;border:1px solid #28583f;':'background:var(--panel2);color:var(--text);border:1px solid var(--line);');el.textContent=msg;box.append(el)})
+}
+
+function persistSavings(){try{localStorage.setItem(KEYS.savings,JSON.stringify(savings));return true}catch(e){return false}}
+function savingsTotal(){return Math.round(savings.reduce((n,x)=>n+(x.action==='withdraw'?-1:1)*(Number(x.amount)||0),0)*100)/100}
+function renderSavings(){
+ const balance=savingsTotal();$('savingsBalance').textContent=money(balance);
+ const box=$('savingsEntries');box.innerHTML='';
+ if(!savings.length){box.innerHTML='<div class="emptymsg">Você ainda não registrou dinheiro guardado.</div>';return}
+ savings.slice().sort((a,b)=>(Number(b.createdAt)||0)-(Number(a.createdAt)||0)).slice(0,8).forEach(x=>{
+  const el=document.createElement('div');el.className='entry';
+  el.innerHTML=`<div class="row spread"><strong>${x.action==='withdraw'?'↘ Retirada':'↗ Dinheiro guardado'}</strong><strong class="${x.action==='withdraw'?'red':'green'}">${x.action==='withdraw'?'−':'+'}${money(x.amount)}</strong></div><small>${esc(x.note||'Sem descrição')} · ${esc(x.date||'')}</small><div style="text-align:right;margin-top:5px"><button class="btn danger small" data-delsaving="${esc(x.id)}">Apagar</button></div>`;
+  box.append(el);
+ });
+ box.querySelectorAll('[data-delsaving]').forEach(b=>b.onclick=()=>{if(confirm('Apagar esta movimentação da poupança?')){savings=savings.filter(x=>String(x.id)!==b.dataset.delsaving);persistSavings();renderSavings();renderEntries()}});
+}
+function saveSavings(){
+ const amount=Math.round((Number($('savingsAmount').value)||0)*100)/100,action=$('savingsAction').value;
+ if(amount<=0){$('savingsMsg').textContent='Informe um valor maior que zero.';return}
+ if(action==='withdraw'&&amount>savingsTotal()){$('savingsMsg').textContent='A retirada é maior que o total guardado.';return}
+ savings.push({id:String(Date.now())+'-'+Math.random().toString(36).slice(2,7),action,amount,note:$('savingsNote').value.trim(),date:todayKey,createdAt:Date.now()});
+ if(!persistSavings()){savings.pop();$('savingsMsg').textContent='Não foi possível salvar. Faça um backup e tente novamente.';return}
+ $('savingsAmount').value='';$('savingsNote').value='';$('savingsMsg').textContent=action==='deposit'?'Dinheiro adicionado à poupança.':'Retirada registrada.';
+ renderSavings();renderEntries();
+}
+
+
+function openSavingsBalanceEditor(){
+ $('savingsTargetBalance').value=savingsTotal().toFixed(2);
+ $('savingsAdjustmentNote').value='';
+ $('editSavingsBalanceFields').classList.remove('hidden');
+}
+function closeSavingsBalanceEditor(){$('editSavingsBalanceFields').classList.add('hidden')}
+function confirmSavingsBalance(){
+ const target=Math.round((Number($('savingsTargetBalance').value)||0)*100)/100;
+ if(target<0){$('savingsMsg').textContent='Informe um saldo igual ou maior que zero.';return}
+ const current=savingsTotal(),diff=Math.round((target-current)*100)/100;
+ if(diff===0){$('savingsMsg').textContent='O saldo já está nesse valor.';closeSavingsBalanceEditor();return}
+ savings.push({
+  id:String(Date.now())+'-'+Math.random().toString(36).slice(2,7),
+  action:diff>0?'deposit':'withdraw',
+  amount:Math.abs(diff),
+  note:'Ajuste de saldo'+($('savingsAdjustmentNote').value.trim()?': '+$('savingsAdjustmentNote').value.trim():''),
+  date:todayKey,createdAt:Date.now(),adjustment:true
+ });
+ if(!persistSavings()){
+  savings.pop();$('savingsMsg').textContent='Não foi possível salvar o ajuste. Tente novamente.';return;
+ }
+ $('savingsMsg').textContent='Saldo da poupança ajustado com sucesso.';
+ closeSavingsBalanceEditor();renderSavings();
+}
+
+function renderAll(){fillStats('week',sum(weekKeys(selected)));fillStats('month',sum(monthKeys(selected)));renderDashboardBars();renderEntries();renderCharts();renderGoalsAlerts();renderSavings();setupMoneyDetailClicks()}
+function switchTab(t){document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!=='tab-'+t));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));if(t==='summary')renderAll();if(t==='events')renderEvents();if(t==='calendar')renderUpcomingReminders();if(t==='settings')loadSettings()}
+function clearEventForm(){
+ editingEventId=null;$('evTitle').value='';$('evDate').value=todayKey;$('evValue').value='';$('evSettled').value='';$('evType').value='receber';$('evCategory').value='pagamento';$('evIcon').value='💳';$('evReminder').checked=true;$('evPriority').checked=false;$('evNotes').value='';$('evInstallments').checked=false;$('evInstallmentCount').value='2';$('evInstallmentFirstDate').value=todayKey;$('installmentFields').classList.add('hidden');$('installmentChecklist').innerHTML='';$('evDate').disabled=false;$('saveEvent').textContent='Salvar pagamento / fatura / evento'
+}
+function installmentDate(firstDate,index){
+ const d=dateFromKey(firstDate||todayKey);const day=d.getDate();const targetMonth=d.getMonth()+index;
+ const lastDay=new Date(d.getFullYear(),targetMonth+1,0).getDate();
+ return dateKey(new Date(d.getFullYear(),targetMonth,Math.min(day,lastDay),12));
+}
+function installmentInfo(ev){
+ const inst=ev.installments;
+ if(!inst||!inst.enabled)return null;
+ const count=Math.max(2,Math.min(120,parseInt(inst.count,10)||2));
+ const firstDate=inst.firstDate||ev.date;
+ const paid=Array.isArray(inst.paid)?inst.paid.map(Number).filter(n=>Number.isInteger(n)&&n>=0&&n<count):[];
+ const dates=Array.from({length:count},(_,i)=>Array.isArray(inst.dates)&&inst.dates[i]?inst.dates[i]:installmentDate(firstDate,i));
+ const unit=Math.round((Math.max(0,Number(ev.value)||0)/count)*100)/100;
+ const paidAmount=Math.min(Number(ev.value)||0,Math.round(paid.reduce((sum,i)=>sum+(i===count-1?Math.max(0,(Number(ev.value)||0)-unit*(count-1)):unit),0)*100)/100);
+ return {count,firstDate,dates,paid:[...new Set(paid)],unit,paidAmount,remainingCount:count-new Set(paid).size};
+}
+function renderInstallmentChecklist(inst){
+ const box=$('installmentChecklist');if(!box)return;
+ const enabled=$('evInstallments').checked;
+ $('installmentFields').classList.toggle('hidden',!enabled);
+ if(!enabled){box.innerHTML='';return}
+ const count=Math.max(2,Math.min(120,parseInt($('evInstallmentCount').value,10)||2));
+ const firstDate=$('evInstallmentFirstDate').value||$('evDate').value||todayKey;
+ const total=Math.max(0,Number($('evValue').value)||0);
+ const unit=Math.round(total/count*100)/100;
+ const currentPaid=inst&&Array.isArray(inst.paid)?inst.paid:[...box.querySelectorAll('[data-installment-paid]:checked')].map(x=>Number(x.dataset.installmentPaid));
+ const paidSet=new Set(currentPaid.map(Number));
+ box.innerHTML='<strong style="display:block;margin:8px 0">Parcelas pagas</strong>'+Array.from({length:count},(_,i)=>{
+   const date=installmentDate(firstDate,i),amount=i===count-1?Math.max(0,Math.round((total-unit*(count-1))*100)/100):unit;
+   const savedDate=(inst&&Array.isArray(inst.dates)&&inst.dates[i])?inst.dates[i]:date;
+   return `<div style="padding:8px 0;border-bottom:1px solid var(--line)"><div class="row" style="justify-content:space-between;gap:8px"><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" data-installment-paid="${i}" ${paidSet.has(i)?'checked':''}><span>${i+1}ª parcela</span></label><strong>${money(amount)}</strong></div><label style="display:block;margin:6px 0 0;font-size:12px;color:var(--muted)">Data de vencimento</label><input type="date" data-installment-date="${i}" value="${savedDate}" style="width:100%"></div>`;
+ }).join('');
+}
+function normalizeEvent(ev){
+ const value=Math.max(0,Number(ev.value)||0);
+ let settled=Number.isFinite(Number(ev.settled))?Math.max(0,Number(ev.settled)):(ev.status==='pago'?value:0);
+ let category=ev.category||((ev.title||'').toLowerCase().includes('fatura')||ev.icon==='💳'?'fatura':'pagamento');
+ const normalized={...ev,value,settled,category:category==='evento'?'evento':category==='fatura'?'fatura':'pagamento'};
+ const inst=installmentInfo(normalized);
+ if(inst){normalized.installments={...ev.installments,enabled:true,count:inst.count,firstDate:inst.firstDate,paid:inst.paid};normalized.settled=inst.paidAmount}
+ normalized.settled=Math.min(value,Math.max(0,normalized.settled));
+ normalized.status=normalized.settled>=value&&value>0?'pago':normalized.settled>0?'parcial':'pendente';
+ return normalized;
+}
+function saveEvent(){
+ let title=$('evTitle').value.trim(),date=$('evDate').value;
+ if(!title||!date){$('eventMsg').textContent='Informe a descrição e a data.';return}
+ let value=Math.max(0,Number($('evValue').value)||0),settled=Math.min(value,Math.max(0,Number($('evSettled').value)||0));
+ let installments=null;
+ if($('evInstallments').checked){
+  const count=Math.max(2,Math.min(120,parseInt($('evInstallmentCount').value,10)||2));
+  const firstDate=$('evInstallmentFirstDate').value||date;
+  const paid=[...document.querySelectorAll('[data-installment-paid]:checked')].map(x=>Number(x.dataset.installmentPaid));
+  const dates=Array.from({length:count},(_,i)=>{const field=document.querySelector(`[data-installment-date="${i}"]`);return field&&field.value?field.value:installmentDate(firstDate,i)});
+  installments={enabled:true,count,firstDate,paid,dates};
+  date=firstDate;
+  settled=0;
+ }
+ let obj={id:editingEventId||String(Date.now()),title,date,value,settled,type:$('evType').value,category:$('evCategory').value,icon:$('evIcon').value,reminder:$('evReminder').checked,priority:$('evPriority').checked,notes:$('evNotes').value.trim(),installments};
+ obj=normalizeEvent(obj);
+ if(editingEventId)events=events.map(x=>x.id===editingEventId?obj:x);else events.push(obj);
+ persistEvents();$('eventMsg').textContent='Salvo. As parcelas e os valores foram atualizados.';clearEventForm();renderEvents();renderCalendar();checkReminders()
+}
+function checkReminders(){let now=new Date(),tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,12),target=dateKey(tomorrow),sent={};try{sent=JSON.parse(localStorage.getItem('meuTrabalhoGanhos_reminders_v1')||'{}')||{}}catch(e){}let due=events.filter(ev=>ev.status!=='pago'&&ev.reminder!==false&&ev.date===target&&!sent[ev.id]);if(!due.length)return;due.forEach(ev=>{let msg=`Amanhã: ${ev.icon||'⭐'} ${ev.title}${Number(ev.value)>0?' · '+money(ev.value):''}`;if('Notification' in window&&Notification.permission==='granted'){try{new Notification('Lembrete — Meu Trabalho & Ganhos',{body:msg,tag:'mtg-'+ev.id});sent[ev.id]=target}catch(e){}}else{console.info('Lembrete de amanhã:',msg)}});try{localStorage.setItem('meuTrabalhoGanhos_reminders_v1',JSON.stringify(sent))}catch(e){}if(due.length)$('eventMsg').textContent='Você tem '+due.length+' lembrete(s) para amanhã. Confira os eventos pendentes.'}
+async function requestNotifications(){if(!('Notification' in window)){$('eventMsg').textContent='Este navegador não oferece notificações. Os lembretes aparecem dentro do aplicativo.';return}try{let p=await Notification.requestPermission();$('eventMsg').textContent=p==='granted'?'Notificações permitidas. Os lembretes serão verificados quando o aplicativo estiver aberto.':'Permissão de notificações não concedida.';checkReminders()}catch(e){$('eventMsg').textContent='Não foi possível ativar notificações neste ambiente.'}}
+function openEventDetails(id){
+ const raw=events.find(x=>String(x.id)===String(id));if(!raw)return;const ev=normalizeEvent(raw);
+ const dueDate=dateFromKey(ev.date);dueDate.setHours(0,0,0,0);const today=new Date();today.setHours(0,0,0,0);const diff=Math.round((dueDate-today)/86400000);
+ let dueText=diff<0?'Vencimento passou há '+Math.abs(diff)+' '+(Math.abs(diff)===1?'dia':'dias'):diff===0?'Vence hoje':'Faltam '+diff+' '+(diff===1?'dia':'dias')+' para o vencimento';
+ const remaining=Math.max(0,ev.value-ev.settled),isBill=ev.category==='fatura',inst=installmentInfo(ev);
+ const installmentHtml=inst?`<div class="detail-item"><strong>Parcelas</strong><div class="money-row"><span>Parcelas pagas</span><strong>${inst.paid.length} de ${inst.count}</strong></div><div class="money-row"><span>Parcelas restantes</span><strong>${inst.remainingCount}</strong></div>${Array.from({length:inst.count},(_,i)=>{const d=inst.dates[i]||installmentDate(inst.firstDate,i),unit=i===inst.count-1?Math.max(0,Math.round((ev.value-inst.unit*(inst.count-1))*100)/100):inst.unit;return `<label class="row" style="justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)"><span style="display:flex;gap:8px;align-items:center"><input type="checkbox" data-detail-installment="${i}" ${inst.paid.includes(i)?'checked':''}><span>${i+1}ª · ${dateFromKey(d).toLocaleDateString('pt-BR')}</span></span><strong>${money(unit)}</strong></label>`}).join('')}<p class="muted" style="font-size:12px;margin:8px 0 0">Marque ou desmarque uma parcela para atualizar os valores pagos e restantes.</p></div>`:'';
+ $('moneyDetailTitle').textContent=(isBill?'🧾 Detalhes da fatura':ev.category==='evento'?'📅 Detalhes do evento':'💰 Detalhes do pagamento');
+ const body=$('moneyDetailBody');body.innerHTML=`<div class="detail-item"><div class="row spread"><strong>${esc(ev.icon||'⭐')} ${esc(ev.title)}</strong><span class="badge ${ev.status==='pago'?'paid':ev.status==='parcial'?'partial':'pending'}">${ev.status==='pago'?'Quitado / recebido':ev.status==='parcial'?'Parcialmente pago':'Pendente'}</span></div><p class="muted" style="margin:7px 0">${esc(ev.type==='receber'?'Vou receber':'Vou pagar')} · ${esc(dueDate.toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}))}</p><div class="badge ${diff<0&&ev.status!=='pago'?'pending':'partial'}">${esc(ev.status==='pago'?'Data do vencimento: '+dueDate.toLocaleDateString('pt-BR')+' · '+dueText:dueText)}</div></div><div class="detail-item"><div class="money-row"><span>Valor total inicial</span><strong>${money(ev.value)}</strong></div><div class="money-row"><span>Valor já ${ev.type==='receber'?'recebido':'pago'}</span><strong class="green">${money(ev.settled)}</strong></div><div class="money-row remaining"><span>Falta ${ev.type==='receber'?'receber':'pagar'}</span><strong class="${remaining>0?(ev.type==='pagar'?'red':'green'):'green'}">${money(remaining)}</strong></div></div>${installmentHtml}${ev.notes?`<div class="detail-item"><strong>Observações</strong><p style="margin-bottom:0">${esc(ev.notes)}</p></div>`:''}<div class="detail-item"><button class="btn ${ev.priority?'secondary':'primary'}" id="toggleEventPriority" style="width:100%">${ev.priority?'⭐ Remover prioridade':'☆ Marcar como prioridade'}</button><p class="muted" style="font-size:12px;margin-bottom:0">A prioridade destaca este item na lista de Eventos. Você pode mudar essa opção a qualquer momento.</p></div><div class="row" style="flex-wrap:wrap"><button class="btn secondary" id="detailEditEvent">Editar pagamento / fatura</button><button class="btn secondary" id="detailCloseEvent">Fechar</button></div>`;
+ document.querySelectorAll('[data-installment-date]').forEach(inp=>inp.onchange=()=>{
+  const idx=Number(inp.dataset.installmentDate),value=inp.value;
+  events=events.map(raw=>{if(String(raw.id)!==String(ev.id))return raw;const n=normalizeEvent(raw),info=installmentInfo(n);if(!info)return raw;const dates=[...info.dates];dates[idx]=value||installmentDate(info.firstDate,idx);return normalizeEvent({...n,installments:{...n.installments,enabled:true,dates}})});
+  persistEvents();renderEvents();openEventDetails(ev.id)
+ });
+ document.querySelectorAll('[data-detail-installment]').forEach(ch=>ch.onchange=()=>{
+  events=events.map(raw=>{if(String(raw.id)!==String(ev.id))return raw;const n=normalizeEvent(raw),info=installmentInfo(n);if(!info)return raw;const paid=new Set(info.paid);const idx=Number(ch.dataset.detailInstallment);if(ch.checked)paid.add(idx);else paid.delete(idx);return normalizeEvent({...n,installments:{...n.installments,enabled:true,paid:[...paid]}})});
+  persistEvents();renderEvents();openEventDetails(ev.id)
+ });
+ $('toggleEventPriority').onclick=()=>{events=events.map(x=>String(x.id)===String(ev.id)?{...x,priority:!ev.priority}:x);persistEvents();renderEvents();openEventDetails(ev.id)};
+ $('detailEditEvent').onclick=()=>{closeMoneyDetails();const b=document.querySelector(`[data-editev="${CSS.escape(String(ev.id))}"]`);if(b)b.click()};$('detailCloseEvent').onclick=closeMoneyDetails;$('moneyDetailOverlay').classList.add('open');
+}
+function renderEvents(){
+ const pendingBox=$('pendingEvents'),completedBox=$('completedEvents');
+ const filter=$('eventFilter')?$('eventFilter').value:'todos';
+ const arr=events.map(normalizeEvent).sort((a,b)=>(Number(!!b.priority)-Number(!!a.priority))||a.date.localeCompare(b.date));
+ const visible=arr.filter(x=>filter==='todos'||x.category===filter);
+ const pending=visible.filter(x=>x.status!=='pago'),completed=visible.filter(x=>x.status==='pago');
+ function fill(box,list,isCompleted){
+  box.innerHTML='';
+  if(!list.length){box.innerHTML='<div class="emptymsg">'+(isCompleted?'Nenhum item concluído nesta categoria.':'Nenhum item pendente nesta categoria.')+'</div>';return}
+  list.forEach(ev=>{
+   let el=document.createElement('div');el.className='entry';
+   // Identificador necessário para abrir o pop-up do item tocado.
+   el.dataset.eventId=String(ev.id);
+   let typeLabel=ev.type==='receber'?'Vou receber':'Vou pagar';
+   let categoryLabel=ev.category==='fatura'?'Fatura':ev.category==='evento'?'Evento / compromisso':'Pagamento';
+   let date=dateFromKey(ev.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
+   let remaining=Math.max(0,ev.value-ev.settled);
+   let statusLabel=ev.status==='pago'?'Quitado / recebido':ev.status==='parcial'?'Parcialmente pago':'Pendente';
+   let badgeClass=ev.status==='pago'?'paid':ev.status==='parcial'?'partial':'pending';
+   el.classList.add("tap-detail");el.setAttribute("role","button");el.setAttribute("tabindex","0");el.innerHTML=`<div class="row spread"><strong>${esc(ev.icon||'⭐')} ${esc(ev.title)}${ev.priority?' <span class="badge pending">⭐ PRIORIDADE</span>':''}</strong><span class="badge ${badgeClass}">${statusLabel}</span></div><small>${categoryLabel} · ${date} · ${typeLabel}${installmentInfo(ev)?' · '+installmentInfo(ev).paid.length+'/'+installmentInfo(ev).count+' parcelas pagas':''}</small>
+   <div class="money-breakdown"><div class="money-row"><span>Valor original</span><strong>${money(ev.value)}</strong></div><div class="money-row"><span>Já ${ev.type==='receber'?'recebido':'pago'}</span><strong class="green">${money(ev.settled)}</strong></div><div class="money-row remaining"><span>Restante a ${ev.type==='receber'?'receber':'pagar'}</span><strong class="${remaining>0?(ev.type==='pagar'?'red':'green'):'green'}">${money(remaining)}</strong></div></div>
+   ${ev.notes?`<p class="muted" style="font-size:13px;margin:5px 0">${esc(ev.notes)}</p>`:''}
+   <div class="row" style="margin-top:9px;flex-wrap:wrap"><button class="btn secondary small" data-toggle="${ev.id}">${ev.status==='pago'?'Reabrir como pendente':'Marcar como quitado / recebido'}</button><button class="btn secondary small" data-editev="${ev.id}">Editar valores</button><button class="btn danger small" data-delev="${ev.id}">Apagar</button></div>`;
+   box.append(el);
+  });
+ }
+ fill(pendingBox,pending,false);fill(completedBox,completed,true);
+ // Tocar em qualquer parte do cartão abre os detalhes, sem interferir nos botões.
+ document.querySelectorAll('#pendingEvents .entry, #completedEvents .entry').forEach(card=>{
+  const open=()=>{if(card.dataset.eventId)openEventDetails(card.dataset.eventId)};
+  card.addEventListener('click',e=>{if(e.target.closest('button'))return;open()});
+  card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('button')){e.preventDefault();open()}});
+ });
+ document.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=()=>{
+  events=events.map(raw=>{
+   if(raw.id!==b.dataset.toggle)return raw;
+   let ev=normalizeEvent(raw);
+   if(ev.installments&&ev.installments.enabled){const inst=installmentInfo(ev);return normalizeEvent({...ev,installments:{...ev.installments,paid:ev.status==='pago'?[]:Array.from({length:inst.count},(_,i)=>i)}})}return {...ev,settled:ev.status==='pago'?0:ev.value,status:ev.status==='pago'?'pendente':'pago'};
+  });
+  persistEvents();renderEvents()
+ });
+ document.querySelectorAll('[data-editev]').forEach(b=>b.onclick=()=>{
+  let raw=events.find(x=>x.id===b.dataset.editev);if(!raw)return;
+  let ev=normalizeEvent(raw);editingEventId=ev.id;
+  $('evTitle').value=ev.title;$('evDate').value=ev.date;$('evValue').value=ev.value;$('evSettled').value=ev.settled;
+  $('evType').value=ev.type||'receber';$('evCategory').value=ev.category;$('evIcon').value=ev.icon||'⭐';
+  $('evReminder').checked=ev.reminder!==false;$('evPriority').checked=!!ev.priority;$('evNotes').value=ev.notes||'';
+  const inst=installmentInfo(ev);$('evInstallments').checked=!!inst;$('evInstallmentCount').value=inst?inst.count:2;$('evInstallmentFirstDate').value=inst?inst.firstDate:ev.date;$('evDate').disabled=!!inst;$('evSettled').disabled=!!inst;$('evSettled').value=inst?'':ev.settled;renderInstallmentChecklist(inst||null);
+  $('saveEvent').textContent='Atualizar pagamento / fatura / evento';window.scrollTo({top:0,behavior:'smooth'})
+ });
+ document.querySelectorAll('[data-delev]').forEach(b=>b.onclick=()=>{
+  if(confirm('Apagar este pagamento ou evento?')){events=events.filter(x=>x.id!==b.dataset.delev);persistEvents();renderEvents();renderCalendar()}
+ });
+}
+
+
+// Pop-ups reaproveitam os formulários existentes para preservar os dados e suas funções.
+const dayPanel=$('dayEditorPanel'),dayHome=dayPanel.parentNode,dayAnchor=document.createComment('day-editor-anchor');dayHome.insertBefore(dayAnchor,dayPanel);
+const dayOverlay=$('dayEditorOverlay'),dayBody=$('dayEditorModalBody');
+function openDayEditor(){ $('dayModalHeading').textContent=$('selectedTitle').textContent;dayBody.appendChild(dayPanel);dayPanel.style.display='block';dayOverlay.classList.add('open'); }
+function closeDayEditor(){dayOverlay.classList.remove('open');dayAnchor.parentNode.insertBefore(dayPanel,dayAnchor.nextSibling);dayPanel.style.display='none';}
+$('closeDayEditor').onclick=closeDayEditor;dayOverlay.addEventListener('click',e=>{if(e.target===dayOverlay)closeDayEditor()});
+const originalSaveDay=saveDay;saveDay=function(){originalSaveDay();$('dayModalHeading').textContent=$('selectedTitle').textContent;closeDayEditor()};
+const originalRenderCalendar=renderCalendar;renderCalendar=function(){originalRenderCalendar();document.querySelectorAll('#upcomingReminders [data-event-id],#upcomingReminders [data-open-event]').forEach(el=>{el.style.cursor='pointer';el.addEventListener('click',()=>{const id=el.dataset.eventId||el.dataset.openEvent;if(id)openEventDetails(id);else switchTab('events')})})};
+// Os cartões de poupança e metas abrem os próprios painéis dentro do modal.
+function showPanelInPopup(panelId,title){const panel=$(panelId);if(!panel)return;const home=panel.parentNode,anchor=document.createComment('popup-panel-anchor');home.insertBefore(anchor,panel);const body=$('sectionDetailBody');body.innerHTML='';body.appendChild(panel);panel.style.display='block';$('sectionDetailTitle').textContent=title;$('sectionDetailOverlay').classList.add('open');$('sectionDetailOverlay').dataset.panel=panelId;$('sectionDetailOverlay')._return=()=>{anchor.parentNode.insertBefore(panel,anchor.nextSibling);panel.style.display='';anchor.remove()};}
+function closeSectionPopup(){const ov=$('sectionDetailOverlay');ov.classList.remove('open');if(ov._return){ov._return();ov._return=null}ov.dataset.panel='';renderSavings();renderAll()}
+$('closeSectionDetail').onclick=closeSectionPopup;$('sectionDetailOverlay').addEventListener('click',e=>{if(e.target===$('sectionDetailOverlay'))closeSectionPopup()});
+$('openSavingsTile').onclick=()=>showPanelInPopup('savingsPanel','🐷 Minha poupança');$('openGoalsTile').onclick=()=>showPanelInPopup('goalsPanel','🎯 Metas e limites');
+const oldRenderSavings=renderSavings;renderSavings=function(){oldRenderSavings();if($('savingsTileValue'))$('savingsTileValue').textContent=money(savingsTotal())};
+// Eventos continuam com cartões clicáveis; o formulário completo é aberto em pop-up ao tocar em Novo evento.
+const eventFormPanel=$('evTitle')?.closest('.panel');if(eventFormPanel){const home=eventFormPanel.parentNode;const anchor=document.createComment('event-form-anchor');home.insertBefore(anchor,eventFormPanel);const launcher=document.createElement('button');launcher.className='btn';launcher.style.cssText='width:100%;margin-bottom:12px';launcher.textContent='＋ Adicionar evento, pagamento ou fatura';launcher.id='openEventFormPopup';anchor.parentNode.insertBefore(launcher,anchor.nextSibling);eventFormPanel.style.display='none';launcher.onclick=()=>{showPanelInPopup('__eventForm','＋ Novo pagamento, fatura ou evento')};}
+// Permite abrir o formulário de eventos existente sem duplicar IDs.
+const oldShowPanelInPopup=showPanelInPopup;showPanelInPopup=function(panelId,title){if(panelId==='__eventForm'){const panel=eventFormPanel;if(!panel)return;const home=panel.parentNode,anchor=document.createComment('event-popup-anchor');home.insertBefore(anchor,panel);$('sectionDetailBody').innerHTML='';$('sectionDetailBody').appendChild(panel);panel.style.display='block';$('sectionDetailTitle').textContent=title;$('sectionDetailOverlay').classList.add('open');$('sectionDetailOverlay')._return=()=>{anchor.parentNode.insertBefore(panel,anchor.nextSibling);panel.style.display='none';anchor.remove()};return}oldShowPanelInPopup(panelId,title)};
+$('closeMoneyDetail').onclick=closeMoneyDetails;$('moneyDetailOverlay').addEventListener('click',e=>{if(e.target===$('moneyDetailOverlay'))closeMoneyDetails()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMoneyDetails();closeDayEditor();closeSectionPopup()}});document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));$('prev').onclick=()=>{shown.setMonth(shown.getMonth()-1);renderCalendar()};$('next').onclick=()=>{shown.setMonth(shown.getMonth()+1);renderCalendar()};$('todayBtn').onclick=()=>{selected=new Date();selected.setHours(12,0,0,0);shown=new Date(selected.getFullYear(),selected.getMonth(),1);loadDay();renderCalendar();openDayEditor()};$('saveDay').onclick=saveDay;$('saveSavings').onclick=saveSavings;$('editSavingsBalance').onclick=openSavingsBalanceEditor;$('confirmSavingsBalance').onclick=confirmSavingsBalance;$('cancelSavingsBalance').onclick=closeSavingsBalanceEditor;$('clearDay').onclick=()=>{$('worked').checked=false;$('dayOff').checked=false;$('gain').value='';$('expense').value='';$('event').value='';$('dayEventIcon').value='⭐';$('notes').value='';$('gainNotes').value='';$('expenseNotes').value='';$('saveMsg').textContent='Campos limpos. Toque em Salvar registro para confirmar.'};$('saveGoals').onclick=saveGoals;$('period').onchange=renderCharts;$('export').onclick=()=>{try{const backup={app:'Meu Trabalho & Ganhos',version:5,createdAt:new Date().toISOString(),records,events,savings};const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='backup-meu-trabalho-e-ganhos-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);$('backupMsg').textContent='Backup preparado. Confira a pasta Downloads/Arquivos do celular para localizar o arquivo.'}catch(err){$('backupMsg').textContent='Não foi possível criar o backup neste momento.'}};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let o=JSON.parse(await f.text());if(o.app!=='Meu Trabalho & Ganhos'||!o.records||typeof o.records!=='object'||!Array.isArray(o.events))throw new Error('Formato inválido');if(confirm('Restaurar este backup? Os dados atuais do aplicativo serão substituídos pelos dados que estão no arquivo. Se quiser guardar os dados atuais, salve um backup antes.')){records=o.records;events=o.events;savings=Array.isArray(o.savings)?o.savings:[];const daysSaved=persistDays(),eventsSaved=persistEvents(),savingsSaved=persistSavings();if(!daysSaved||!eventsSaved||!savingsSaved)throw new Error('Falha ao salvar');renderAll();renderCalendar();renderEvents();renderUpcomingReminders();$('backupMsg').textContent='Backup carregado e dados restaurados com sucesso.';alert('Backup carregado! Seus registros e eventos foram restaurados.')}}catch(err){$('backupMsg').textContent='Esse arquivo não parece ser um backup válido do Meu Trabalho & Ganhos.';alert('Não foi possível carregar o backup. Escolha um arquivo JSON de backup do Meu Trabalho & Ganhos.')}e.target.value=''};$('evInstallments').onchange=()=>{if($('evInstallments').checked){$('evInstallmentFirstDate').value=$('evDate').value||todayKey;$('evDate').disabled=true;$('evSettled').disabled=true;$('evSettled').value='';}else{$('evDate').disabled=false;$('evSettled').disabled=false;}renderInstallmentChecklist(null)};$('evInstallmentCount').oninput=()=>renderInstallmentChecklist(null);$('evInstallmentFirstDate').onchange=()=>renderInstallmentChecklist(null);$('evValue').oninput=()=>renderInstallmentChecklist(null);$('saveEvent').onclick=saveEvent;$('enableNotifications').onclick=requestNotifications;$('settingsNotifications').onclick=requestNotifications;$('appLanguage').onchange=saveSettings;$('appAppearance').onchange=saveSettings;$('eventFilter').onchange=renderEvents;$('worked').onchange=()=>{if($('worked').checked)$('dayOff').checked=false};$('dayOff').onchange=()=>{if($('dayOff').checked)$('worked').checked=false};
+$('evDate').value=todayKey;loadSettings();loadGoals();loadDay();renderCalendar();renderAll();renderEvents();checkReminders();window.addEventListener('focus',checkReminders);setInterval(checkReminders,60*60*1000);
+})();
+if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
+ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+</script></body></html>

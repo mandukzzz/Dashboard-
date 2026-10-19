@@ -1,0 +1,10 @@
+{
+  "name": "Meu Trabalho & Ganhos",
+  "short_name": "Trabalho & Ganhos",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101216",
+  "theme_color": "#101216"
+}
